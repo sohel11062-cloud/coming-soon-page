@@ -6,7 +6,9 @@
   <title>The Vibe Canvas | Streetwear for the Tech &amp; Cyber Culture</title>
   <meta name="description" content="The Vibe Canvas is a premium streetwear brand designed for techies, ethical hackers, and Gen Z. The designated dress code for the modern future. Join the waitlist.">
   <meta name="keywords" content="cyberpunk streetwear, techwear, hacker clothing, Gen Z fashion, anime streetwear, The Vibe Canvas">
+  <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="theme-color" content="#000000">
+  <link rel="canonical" href="https://thevibecanvas.in/">
   <meta property="og:title" content="The Vibe Canvas | Streetwear for the Tech &amp; Cyber Culture">
   <meta property="og:description" content="The Vibe Canvas is a premium streetwear brand designed for techies, ethical hackers, and Gen Z. The designated dress code for the modern future. Join the waitlist.">
   <meta property="og:type" content="website">
@@ -632,7 +634,7 @@
       display: inline-block;
       margin: 0;
       width: 0;
-      max-width: 100%;
+      max-width: 26ch;
       overflow: hidden;
       white-space: nowrap;
       font-family: var(--mono);
@@ -656,6 +658,7 @@
       max-width: 62rem;
       line-height: 1.95;
       color: var(--text-dim);
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.04);
       opacity: 0;
       transform: translateY(10px);
       transition: opacity 680ms ease, transform 680ms ease;
@@ -840,7 +843,7 @@
 
     @keyframes typewriter {
       from { width: 0; }
-      to { width: 100%; }
+      to { width: 25ch; }
     }
 
     @media (max-width: 980px) {
@@ -1254,7 +1257,7 @@
           for (var index = 0; index < metrics.columns; index += 1) {
             drops.push({
               y: Math.random() * metrics.height * -1,
-              speed: 0.35 + Math.random() * 0.8,
+              speed: 0.22 + Math.random() * 0.45,
               opacity: 0.15 + Math.random() * 0.35
             });
           }
@@ -1280,7 +1283,7 @@
             drop.y += metrics.fontSize * drop.speed;
             if (drop.y > metrics.height + metrics.fontSize * 3) {
               drop.y = Math.random() * metrics.height * -0.8;
-              drop.speed = 0.35 + Math.random() * 0.8;
+              drop.speed = 0.22 + Math.random() * 0.45;
               drop.opacity = 0.15 + Math.random() * 0.35;
             }
           }
