@@ -3,931 +3,416 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Vibe Canvas | Streetwear for the Tech &amp; Cyber Culture</title>
+  <title>The Vibe Canvas | Streetwear for the Tech & Cyber Culture</title>
   <meta name="description" content="The Vibe Canvas is a premium streetwear brand designed for techies, ethical hackers, and Gen Z. The designated dress code for the modern future.">
-  <meta property="og:title" content="The Vibe Canvas | Streetwear for the Tech &amp; Cyber Culture">
+  <meta name="keywords" content="cyberpunk streetwear, techwear, hacker clothing, Gen Z fashion, anime streetwear, The Vibe Canvas">
+  <meta property="og:title" content="The Vibe Canvas | Streetwear for the Tech & Cyber Culture">
   <meta property="og:description" content="The Vibe Canvas is a premium streetwear brand designed for techies, ethical hackers, and Gen Z. The designated dress code for the modern future.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://thevibecanvas.in/">
+  <meta property="og:url" content="https://waitlist.thevibecanvas.in/">
   <meta name="theme-color" content="#000000">
+  
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Rajdhani:wght@500;600;700&display=swap");
 
     :root {
-      --bg: #000000;
-      --panel: rgba(10, 25, 47, 0.5);
-      --panel-strong: rgba(10, 25, 47, 0.72);
-      --text: #ffffff;
-      --muted: #8892b0;
-      --accent: #00ffff;
-      --accent-soft: rgba(0, 255, 255, 0.14);
-      --line: rgba(0, 255, 255, 0.22);
-      --line-strong: rgba(0, 255, 255, 0.44);
-      --max-width: 1180px;
-      --radius: 24px;
-      --display: "Rajdhani", "Space Grotesk", sans-serif;
-      --body: "Space Grotesk", system-ui, sans-serif;
+      --bg-color: #000000;
+      --cyan-neon: #00FFFF;
+      --cyan-dim: rgba(0, 255, 255, 0.15);
+      --text-main: #FFFFFF;
+      --text-muted: #A0ABC0;
+      --panel-bg: rgba(5, 10, 15, 0.8);
+      --font-mono: 'Space Mono', monospace;
+      --font-sans: 'Rajdhani', sans-serif;
     }
 
     * {
       box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-sans);
       min-height: 100vh;
-      background:
-        radial-gradient(circle at top, rgba(0, 255, 255, 0.1), transparent 28%),
-        radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.06), transparent 24%),
-        linear-gradient(180deg, #01050b 0%, #000000 28%, #000000 100%);
-      color: var(--text);
-      font-family: var(--body);
       overflow-x: hidden;
     }
 
-    body::before {
-      content: "";
+    /* Ambient Data Rain Canvas */
+    #matrix-canvas {
       position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background:
-        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.04), transparent 16%),
-        radial-gradient(circle at 80% 0%, rgba(0, 255, 255, 0.08), transparent 28%);
-      filter: blur(30px);
-      animation: drift 16s ease-in-out infinite alternate;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      opacity: 0.6; /* Keeps it ambient */
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .scanlines {
+    /* CRT Monitor Overlay */
+    .crt-overlay {
       position: fixed;
-      inset: 0;
-      z-index: 2;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 999;
       pointer-events: none;
-      background:
-        radial-gradient(circle at center, transparent 55%, rgba(0, 0, 0, 0.34) 100%),
-        repeating-linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0.03) 0,
-          rgba(255, 255, 255, 0.03) 1px,
-          transparent 1px,
-          transparent 4px
-        );
-      mix-blend-mode: screen;
-      opacity: 0.16;
-    }
-
-    .page {
-      position: relative;
-      z-index: 1;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+      background-size: 100% 2px, 3px 100%;
+      box-shadow: inset 0 0 100px rgba(0,0,0,0.9);
+      opacity: 0.4;
     }
 
     .shell {
-      width: min(calc(100% - 2rem), var(--max-width));
+      max-width: 1200px;
       margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
     }
 
-    .topbar {
-      padding: 1.4rem 0 0;
-    }
-
-    .nav {
+    /* Navigation */
+    header {
+      padding: 30px 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 1rem;
-      padding: 1rem 1.1rem;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(10, 25, 47, 0.3);
-      box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.02),
-        0 0 28px rgba(0, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--cyan-dim);
     }
 
-    .brand,
-    .nav-status {
-      font-family: var(--display);
+    .brand-logo {
+      color: var(--cyan-neon);
+      text-shadow: 0 0 8px var(--cyan-neon);
       font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-size: 0.82rem;
+      letter-spacing: 2px;
     }
 
-    .brand {
-      color: var(--accent);
-      text-shadow: 0 0 14px rgba(0, 255, 255, 0.42);
+    .status {
+      color: var(--text-muted);
     }
 
-    .nav-status {
-      color: var(--muted);
+    .cursor-blink {
+      animation: blink 1s step-end infinite;
     }
 
-    .nav-status::after {
-      content: "";
-      display: inline-block;
-      width: 0.5rem;
-      height: 0.5rem;
-      margin-left: 0.75rem;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 12px rgba(0, 255, 255, 0.72);
-      animation: pulse 1.8s ease-in-out infinite;
-    }
+    @keyframes blink { 50% { opacity: 0; } }
 
-    main {
-      padding: 1.8rem 0 2.5rem;
-    }
-
-    .hero,
-    .manifesto,
-    .culture,
-    .drop,
-    footer {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background:
-        linear-gradient(180deg, rgba(0, 255, 255, 0.05), transparent 30%),
-        linear-gradient(135deg, rgba(255, 255, 255, 0.02), transparent 34%),
-        var(--panel);
-      box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.02),
-        0 0 32px rgba(0, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
-      margin-bottom: 1rem;
-    }
-
-    .hero::before,
-    .manifesto::before,
-    .culture::before,
-    .drop::before,
-    footer::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at top right, rgba(0, 255, 255, 0.12), transparent 28%),
-        linear-gradient(115deg, rgba(0, 255, 255, 0.08), transparent 22%);
-      opacity: 0.7;
-      pointer-events: none;
-    }
-
+    /* Hero Section */
     .hero {
-      min-height: calc(100vh - 7rem);
-      display: grid;
+      height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      padding: clamp(2.5rem, 8vw, 5rem) clamp(1.4rem, 4vw, 2.6rem);
+      text-align: center;
+      border-bottom: 1px solid var(--cyan-dim);
     }
 
-    .hero-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
-      gap: 1.5rem;
-      align-items: end;
-    }
-
-    .eyebrow,
-    .section-kicker,
-    .drop-meta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.7rem;
-      width: fit-content;
-      padding: 0.6rem 0.95rem;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(10, 25, 47, 0.36);
-      color: var(--accent);
-      font-family: var(--display);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      text-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
-      box-shadow: 0 0 18px rgba(0, 255, 255, 0.06);
-    }
-
-    .eyebrow::before,
-    .section-kicker::before,
-    .drop-meta::before {
-      content: "";
-      width: 0.5rem;
-      height: 0.5rem;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 12px rgba(0, 255, 255, 0.7);
-    }
-
-    .hero-copy {
-      display: grid;
-      gap: 1.05rem;
-      max-width: 42rem;
-    }
-
-    .hero-title,
-    .section-title,
-    .drop-title {
-      margin: 0;
-      font-family: var(--display);
-      font-weight: 700;
-      line-height: 0.92;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--text);
-      text-shadow:
-        0 0 16px rgba(0, 255, 255, 0.16),
-        0 0 36px rgba(0, 255, 255, 0.08);
+    .hero-sub {
+      color: var(--cyan-neon);
+      font-family: var(--font-mono);
+      letter-spacing: 4px;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
     }
 
     .hero-title {
-      font-size: clamp(3.8rem, 11vw, 7.6rem);
-    }
-
-    .hero-subtag {
-      margin: 0;
-      color: var(--accent);
-      font-family: var(--display);
-      font-size: clamp(1rem, 2vw, 1.3rem);
-      font-weight: 600;
-      letter-spacing: 0.2em;
+      font-family: var(--font-mono);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 700;
+      color: var(--text-main);
+      text-shadow: 0 0 10px var(--cyan-neon), 0 0 20px var(--cyan-neon), 0 0 40px var(--cyan-neon);
       text-transform: uppercase;
-      text-shadow: 0 0 10px rgba(0, 255, 255, 0.34);
+      margin-bottom: 20px;
+      min-height: 1.2em; /* Prevents layout jump while typing */
     }
 
-    .hero-body,
-    .manifesto-intro,
-    .drop-copy,
-    .footer-copy {
-      margin: 0;
-      color: var(--muted);
+    .hero-body {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      max-width: 600px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    /* Cyan Neon Button */
+    .btn-cyber {
+      display: inline-block;
+      padding: 15px 30px;
+      background: transparent;
+      color: var(--cyan-neon);
+      font-family: var(--font-mono);
       font-size: 1rem;
-      line-height: 1.85;
-      max-width: 40rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-      margin-top: 0.5rem;
-    }
-
-    .cta-primary,
-    .cta-secondary {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 13.5rem;
-      padding: 1rem 1.35rem;
-      border-radius: 14px;
-      font-family: var(--display);
-      font-size: 0.92rem;
       font-weight: 700;
-      letter-spacing: 0.14em;
+      text-decoration: none;
       text-transform: uppercase;
-      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+      letter-spacing: 2px;
+      border: 1px solid var(--cyan-neon);
+      box-shadow: 0 0 10px var(--cyan-dim), inset 0 0 10px var(--cyan-dim);
+      transition: all 0.3s ease;
+      cursor: pointer;
     }
 
-    .cta-primary {
-      border: 1px solid var(--line-strong);
-      background:
-        linear-gradient(180deg, rgba(0, 255, 255, 0.18), rgba(0, 255, 255, 0.04)),
-        rgba(10, 25, 47, 0.8);
-      box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.03),
-        0 0 22px rgba(0, 255, 255, 0.16),
-        0 0 42px rgba(0, 255, 255, 0.08);
-      color: var(--text);
-      text-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
+    .btn-cyber:hover {
+      background: var(--cyan-neon);
+      color: var(--bg-color);
+      box-shadow: 0 0 20px var(--cyan-neon), inset 0 0 10px var(--cyan-neon);
     }
 
-    .cta-secondary {
-      border: 1px solid rgba(0, 255, 255, 0.18);
-      background: rgba(10, 25, 47, 0.42);
-      color: var(--accent);
-      box-shadow: 0 0 18px rgba(0, 255, 255, 0.04);
-    }
-
-    .cta-primary:hover,
-    .cta-primary:focus-visible,
-    .cta-secondary:hover,
-    .cta-secondary:focus-visible,
-    .tribe-card:hover,
-    .tribe-card:focus-visible {
-      transform: translateY(-2px);
-      border-color: var(--line-strong);
-      box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.03),
-        0 0 26px rgba(0, 255, 255, 0.14),
-        0 0 48px rgba(0, 255, 255, 0.08);
-      outline: none;
-    }
-
-    .hero-support {
-      margin: 0.25rem 0 0;
-      color: var(--accent);
-      font-family: var(--display);
-      font-size: 0.95rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-    }
-
-    .hero-side {
-      justify-self: end;
-      width: min(100%, 390px);
-      padding: 1.2rem;
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      background:
-        linear-gradient(180deg, rgba(0, 255, 255, 0.08), transparent 18%),
-        var(--panel-strong);
-      box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.02),
-        0 0 30px rgba(0, 255, 255, 0.08);
-    }
-
-    .hero-side-visual {
-      height: 15rem;
-      border-radius: 18px;
-      border: 1px solid rgba(0, 255, 255, 0.16);
-      background:
-        radial-gradient(circle at 50% 25%, rgba(255, 255, 255, 0.2), transparent 26%),
-        linear-gradient(120deg, rgba(0, 255, 255, 0.12), transparent 30%),
-        linear-gradient(180deg, rgba(10, 25, 47, 0.2), rgba(10, 25, 47, 0.9)),
-        radial-gradient(circle at bottom left, rgba(0, 255, 255, 0.12), transparent 28%);
-      box-shadow: inset 0 -50px 80px rgba(0, 0, 0, 0.44);
-      animation: ribbon 11s ease-in-out infinite alternate;
-    }
-
-    .hero-side-copy {
-      margin-top: 1rem;
+    /* Brand Story / Origin File */
+    .origin-file {
+      padding: 100px 0;
       display: grid;
-      gap: 0.55rem;
-    }
-
-    .hero-side-label {
-      color: var(--accent);
-      font-family: var(--display);
-      font-size: 0.76rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .hero-side-text {
-      margin: 0;
-      color: var(--text);
-      font-family: var(--display);
-      font-size: 1.25rem;
-      line-height: 1.35;
-    }
-
-    .manifesto,
-    .culture,
-    .drop,
-    footer {
-      padding: clamp(1.4rem, 4vw, 2.4rem);
+      grid-template-columns: 1fr;
+      gap: 30px;
+      background: radial-gradient(circle at center, rgba(0, 255, 255, 0.05) 0%, transparent 70%);
     }
 
     .section-header {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 0.95rem;
-      margin-bottom: 1.15rem;
+      font-family: var(--font-mono);
+      font-size: 1.5rem;
+      color: var(--cyan-neon);
+      margin-bottom: 30px;
+      min-height: 1.5em;
     }
 
-    .section-title {
-      font-size: clamp(2rem, 6vw, 4.1rem);
-    }
-
-    .manifesto-lines {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 0.6rem;
-    }
-
-    .manifesto-line {
-      margin: 0;
-      max-width: 50rem;
-      color: var(--text);
-      font-family: var(--display);
-      font-size: clamp(1.2rem, 3vw, 2rem);
-      font-weight: 600;
-      line-height: 1.18;
-      letter-spacing: 0.02em;
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 640ms ease, transform 640ms ease;
-      transition-delay: calc(var(--line-index) * 130ms);
-    }
-
-    .manifesto-line span {
-      color: var(--accent);
-      text-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
-    }
-
-    .manifesto.is-visible .manifesto-line,
-    .is-visible .manifesto-line {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .culture-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 0.9rem;
-    }
-
-    .tribe-card {
-      padding: 1.15rem 1rem;
-      border: 1px solid rgba(0, 255, 255, 0.16);
-      border-radius: 18px;
-      background:
-        linear-gradient(180deg, rgba(0, 255, 255, 0.08), rgba(0, 255, 255, 0.03)),
-        rgba(10, 25, 47, 0.5);
-      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
-    }
-
-    .tribe-index {
-      color: var(--accent);
-      font-family: var(--display);
-      font-size: 0.76rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .tribe-title {
-      margin: 0.7rem 0 0.45rem;
-      color: var(--text);
-      font-family: var(--display);
+    .story-text {
       font-size: 1.3rem;
-      line-height: 1.1;
-      text-transform: uppercase;
-    }
-
-    .tribe-copy {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.96rem;
-      line-height: 1.7;
-    }
-
-    .drop-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.8fr);
-      gap: 1.2rem;
-      align-items: center;
-    }
-
-    .drop-title {
-      font-size: clamp(3rem, 8vw, 5.4rem);
-    }
-
-    .drop-stack {
-      display: grid;
-      gap: 0.85rem;
-    }
-
-    .drop-date {
-      margin: 0;
-      color: var(--accent);
-      font-family: var(--display);
-      font-size: clamp(1.2rem, 3vw, 1.7rem);
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-shadow: 0 0 12px rgba(0, 255, 255, 0.26);
-    }
-
-    .countdown {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 0.8rem;
-      margin-top: 0.35rem;
-    }
-
-    .count-unit {
-      padding: 0.95rem 0.7rem;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background:
-        linear-gradient(180deg, rgba(0, 255, 255, 0.08), rgba(0, 255, 255, 0.03)),
-        rgba(10, 25, 47, 0.56);
-      box-shadow: 0 0 18px rgba(0, 255, 255, 0.06);
-      text-align: center;
-    }
-
-    .count-value {
-      display: block;
-      color: var(--text);
-      font-family: var(--display);
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 700;
-      line-height: 1;
-      text-shadow: 0 0 12px rgba(0, 255, 255, 0.18);
-    }
-
-    .count-label {
-      display: block;
-      margin-top: 0.35rem;
-      color: var(--muted);
-      font-family: var(--display);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .reveal {
+      line-height: 1.8;
+      color: var(--text-muted);
+      max-width: 800px;
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 640ms ease, transform 640ms ease;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
     }
 
-    .reveal.is-visible {
+    .story-text.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .glitch-hover {
-      position: relative;
-      display: inline-block;
-    }
-
-    .glitch-hover::before,
-    .glitch-hover::after {
-      content: attr(data-text);
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .glitch-hover::before {
-      color: rgba(0, 255, 255, 0.6);
-      transform: translate3d(-2px, 0, 0);
-    }
-
-    .glitch-hover::after {
-      color: rgba(255, 255, 255, 0.5);
-      transform: translate3d(2px, 0, 0);
-    }
-
-    .glitch-hover:hover::before,
-    .glitch-hover:hover::after {
-      opacity: 1;
-    }
-
-    .footer-copy {
-      position: relative;
-      z-index: 1;
-      max-width: none;
-      color: var(--accent);
-      font-family: var(--display);
-      font-size: clamp(1rem, 2vw, 1.2rem);
+    .highlight {
+      color: var(--text-main);
+      text-shadow: 0 0 8px var(--cyan-neon);
       font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-shadow: 0 0 12px rgba(0, 255, 255, 0.26);
+    }
+
+    /* Countdown Section */
+    .countdown-section {
+      padding: 80px 0 120px;
       text-align: center;
+      border-top: 1px solid var(--cyan-dim);
     }
 
-    @keyframes pulse {
-      0%,
-      100% {
-        box-shadow: 0 0 12px rgba(0, 255, 255, 0.45);
-        opacity: 0.75;
-      }
-      50% {
-        box-shadow: 0 0 18px rgba(0, 255, 255, 0.82);
-        opacity: 1;
-      }
+    .countdown-title {
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      letter-spacing: 3px;
+      margin-bottom: 40px;
     }
 
-    @keyframes drift {
-      from {
-        transform: translate3d(0, 0, 0);
-      }
-      to {
-        transform: translate3d(2vw, 2vh, 0);
-      }
+    .timer-grid {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
     }
 
-    @keyframes ribbon {
-      from {
-        background-position: 0% 0%, 0% 0%, 50% 50%, 0% 100%;
-      }
-      to {
-        background-position: 100% 0%, 100% 0%, 50% 50%, 100% 100%;
-      }
+    .time-box {
+      background: var(--panel-bg);
+      border: 1px solid var(--cyan-neon);
+      box-shadow: 0 0 15px var(--cyan-dim);
+      padding: 20px 30px;
+      min-width: 120px;
     }
 
-    @media (max-width: 980px) {
-      .hero-grid,
-      .drop-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-side {
-        justify-self: stretch;
-        width: 100%;
-      }
-
-      .culture-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+    .time-val {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 3rem;
+      color: var(--text-main);
+      text-shadow: 0 0 10px var(--cyan-neon);
+      font-weight: 700;
     }
 
-    @media (max-width: 680px) {
-      .nav {
-        flex-direction: column;
-        align-items: flex-start;
-        border-radius: 24px;
-      }
-
-      .hero {
-        min-height: auto;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .cta-primary,
-      .cta-secondary {
-        width: 100%;
-      }
-
-      .countdown {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+    .time-label {
+      display: block;
+      font-family: var(--font-sans);
+      color: var(--cyan-neon);
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 5px;
     }
 
-    @media (max-width: 560px) {
-      .culture-grid,
-      .countdown {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-title {
-        font-size: clamp(3rem, 15vw, 4.6rem);
-      }
-
-      .section-title {
-        font-size: clamp(1.7rem, 10vw, 2.8rem);
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        animation: none !important;
-        transition: none !important;
-      }
-
-      .reveal,
-      .manifesto-line {
-        opacity: 1;
-        transform: none;
-      }
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--cyan-neon);
+      border-top: 1px solid var(--cyan-dim);
+      background: #000;
     }
   </style>
 </head>
 <body>
-  <div class="scanlines" aria-hidden="true"></div>
 
-  <div class="page">
-    <header class="topbar shell">
-      <nav class="nav" aria-label="Top navigation">
-        <div class="brand">THE VIBE CANVAS</div>
-        <div class="nav-status">LAUNCH SEQUENCE ACTIVE</div>
-      </nav>
+  <canvas id="matrix-canvas"></canvas>
+  <div class="crt-overlay"></div>
+
+  <div class="shell">
+    <header>
+      <div class="brand-logo">THE VIBE CANVAS</div>
+      <div class="status">>_ STATUS: SYSTEM BOOTING<span class="cursor-blink">_</span></div>
     </header>
 
-    <main class="shell">
-      <section class="hero">
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <p class="eyebrow reveal">Fashion-Tech Launch</p>
-            <h1 class="hero-title glitch-hover reveal" data-text="LEVEL UP YOUR FIT">LEVEL UP YOUR FIT</h1>
-            <p class="hero-subtag reveal">Code and Culture</p>
-            <p class="hero-body reveal">A premium streetwear launch built for the people shaping tomorrow. Not a product page. A signal flare for the culture that never saw itself reflected in fashion.</p>
-            <div class="hero-actions reveal">
-              <a class="cta-primary" href="https://waitlist.thevibecanvas.in/">ENTER THE VIBE</a>
-              <a class="cta-secondary" href="https://waitlist.thevibecanvas.in/">ACCESS THE DROP</a>
-            </div>
-            <p class="hero-support reveal">Get early access + 10% launch discount</p>
-          </div>
+    <section class="hero">
+      <div class="hero-sub">SYSTEM INITIALIZATION...</div>
+      <h1 class="hero-title" id="type-hero"></h1>
+      <p class="hero-body">Bridge the gap between code and culture. The mainframe is booting. Prepare for Hardware Drop v1.0.</p>
+      <a href="https://waitlist.thevibecanvas.in/" class="btn-cyber">[ INITIALIZE_AVATAR ]</a>
+    </section>
 
-          <aside class="hero-side reveal" aria-label="Campaign preview">
-            <div class="hero-side-visual"></div>
-            <div class="hero-side-copy">
-              <span class="hero-side-label">Campaign Direction</span>
-              <p class="hero-side-text">Luxury streetwear energy for builders, coders, creators, and the ones turning culture into code.</p>
-            </div>
-          </aside>
-        </div>
-      </section>
+    <section class="origin-file" id="origin-trigger">
+      <h2 class="section-header" id="type-story"></h2>
+      <p class="story-text" id="story-body">
+        For too long, the <span class="highlight">architects of tomorrow</span> have been invisible in the culture. The techies, the ethical hackers, the late-night coders, and the Gen-Z builders shaping the AI frontier—you are rewriting reality, yet the fashion world missed you. We are fixing the glitch. The Vibe Canvas is not just a brand; it is a syndicate. A <span class="highlight">designated dress code</span> for the modern future. We are engineering streetwear with an aesthetic you inherently understand, but have never seen before. This is your uniform.
+      </p>
+    </section>
 
-      <section class="manifesto reveal" aria-labelledby="manifesto-title">
-        <div class="section-header">
-          <p class="section-kicker">Brand Story</p>
-          <h2 id="manifesto-title" class="section-title glitch-hover" data-text="Built for the ones who were never styled for the future.">Built for the ones who were never styled for the future.</h2>
-          <p class="manifesto-intro">The Vibe Canvas exists for the people who built the next era before fashion ever acknowledged them.</p>
+    <section class="countdown-section">
+      <h3 class="countdown-title">ESTIMATED BOOT TIME</h3>
+      <div class="timer-grid">
+        <div class="time-box">
+          <span class="time-val" id="days">00</span>
+          <span class="time-label">Days</span>
         </div>
-        <div class="manifesto-lines">
-          <p class="manifesto-line" style="--line-index: 0;">Developers stayed up all night shipping what tomorrow looks like.</p>
-          <p class="manifesto-line" style="--line-index: 1;">Hackers, creators, and designers bent the rules of culture before anyone gave them a uniform.</p>
-          <p class="manifesto-line" style="--line-index: 2;">Gen-Z builders made the future feel inevitable, but the aesthetic never caught up.</p>
-          <p class="manifesto-line" style="--line-index: 3;">So we built one. <span>The Vibe Canvas</span> is fashion for the minds already shaping reality.</p>
-          <p class="manifesto-line" style="--line-index: 4;">Not merch. Not hypewear. A manifesto you can step into.</p>
+        <div class="time-box">
+          <span class="time-val" id="hours">00</span>
+          <span class="time-label">Hours</span>
         </div>
-      </section>
-
-      <section class="culture reveal" aria-labelledby="culture-title">
-        <div class="section-header">
-          <p class="section-kicker">The Culture</p>
-          <h2 id="culture-title" class="section-title glitch-hover" data-text="A tribe for the people building what comes next.">A tribe for the people building what comes next.</h2>
+        <div class="time-box">
+          <span class="time-val" id="minutes">00</span>
+          <span class="time-label">Minutes</span>
         </div>
-        <div class="culture-grid">
-          <article class="tribe-card">
-            <span class="tribe-index">01</span>
-            <h3 class="tribe-title">Developers</h3>
-            <p class="tribe-copy">For the ones writing the systems that quietly run the world.</p>
-          </article>
-          <article class="tribe-card">
-            <span class="tribe-index">02</span>
-            <h3 class="tribe-title">Ethical Hackers</h3>
-            <p class="tribe-copy">For the people who understand the architecture because they know where it breaks.</p>
-          </article>
-          <article class="tribe-card">
-            <span class="tribe-index">03</span>
-            <h3 class="tribe-title">Designers</h3>
-            <p class="tribe-copy">For the ones translating interfaces, emotion, and identity into form.</p>
-          </article>
-          <article class="tribe-card">
-            <span class="tribe-index">04</span>
-            <h3 class="tribe-title">Creators</h3>
-            <p class="tribe-copy">For the people who move culture first and wait for the rest of the world to catch up.</p>
-          </article>
-          <article class="tribe-card">
-            <span class="tribe-index">05</span>
-            <h3 class="tribe-title">Gen-Z Future Builders</h3>
-            <p class="tribe-copy">For the generation treating technology, taste, and identity like one language.</p>
-          </article>
+        <div class="time-box">
+          <span class="time-val" id="seconds">00</span>
+          <span class="time-label">Seconds</span>
         </div>
-      </section>
-
-      <section class="drop reveal" aria-labelledby="drop-title">
-        <div class="drop-grid">
-          <div class="drop-stack">
-            <p class="drop-meta">Drop Teaser</p>
-            <h2 id="drop-title" class="drop-title glitch-hover" data-text="DROP 01">DROP 01</h2>
-            <p class="drop-date">Code × Culture</p>
-            <p class="drop-date">Launching May 1, 2026</p>
-            <p class="drop-copy">A first release engineered like a statement piece: sharp, cinematic, and made for the culture that has been building the future in plain sight.</p>
-          </div>
-          <div>
-            <div class="countdown" role="timer" aria-live="polite" aria-atomic="true">
-              <div class="count-unit">
-                <span id="days" class="count-value">00</span>
-                <span class="count-label">Days</span>
-              </div>
-              <div class="count-unit">
-                <span id="hours" class="count-value">00</span>
-                <span class="count-label">Hours</span>
-              </div>
-              <div class="count-unit">
-                <span id="minutes" class="count-value">00</span>
-                <span class="count-label">Minutes</span>
-              </div>
-              <div class="count-unit">
-                <span id="seconds" class="count-value">00</span>
-                <span class="count-label">Seconds</span>
-              </div>
-            </div>
-            <div class="hero-actions" style="margin-top: 1rem;">
-              <a class="cta-primary" href="https://waitlist.thevibecanvas.in/">JOIN THE CULTURE</a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="shell">
-      <p class="footer-copy">Enter early. Access the drop. Dress like the future already belongs to you.</p>
-    </footer>
+      </div>
+    </section>
   </div>
 
+  <footer>
+    >_ INITIALIZE YOUR AVATAR BEFORE THE TIMER ENDS TO RECEIVE 5,000 CREDS.
+  </footer>
+
   <script>
-    (function () {
-      var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      var launchDate = new Date("2026-05-01T00:00:00");
-      var revealItems = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
-      var manifesto = document.querySelector(".manifesto");
-      var units = {
-        days: document.getElementById("days"),
-        hours: document.getElementById("hours"),
-        minutes: document.getElementById("minutes"),
-        seconds: document.getElementById("seconds")
-      };
-
-      function formatUnit(value) {
-        return String(value).padStart(2, "0");
-      }
-
-      function updateCountdown() {
-        var now = new Date();
-        var diff = launchDate.getTime() - now.getTime();
-
-        if (diff <= 0) {
-          units.days.textContent = "00";
-          units.hours.textContent = "00";
-          units.minutes.textContent = "00";
-          units.seconds.textContent = "00";
-          return;
+    // 1. Ambient Matrix Rain (Slowed down and Cyan)
+    const canvas = document.getElementById('matrix-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*<>[]{}/\\'.split('');
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = [];
+    
+    for(let x = 0; x < columns; x++) {
+      drops[x] = Math.random() * canvas.height; // Random start height
+    }
+    
+    function drawMatrix() {
+      // Very slow fade for smooth trails
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Cyan text
+      ctx.fillStyle = 'rgba(0, 255, 255, 0.25)'; 
+      ctx.font = fontSize + 'px "Space Mono"';
+      
+      for(let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        
+        // Slower reset
+        if(drops[i] * fontSize > canvas.height && Math.random() > 0.99) {
+          drops[i] = 0;
         }
-
-        var totalSeconds = Math.floor(diff / 1000);
-        var days = Math.floor(totalSeconds / 86400);
-        var hours = Math.floor((totalSeconds % 86400) / 3600);
-        var minutes = Math.floor((totalSeconds % 3600) / 60);
-        var seconds = totalSeconds % 60;
-
-        units.days.textContent = formatUnit(days);
-        units.hours.textContent = formatUnit(hours);
-        units.minutes.textContent = formatUnit(minutes);
-        units.seconds.textContent = formatUnit(seconds);
+        // Slower fall speed
+        drops[i] += 0.5; 
       }
+    }
+    setInterval(drawMatrix, 50);
 
-      function showImmediately() {
-        revealItems.forEach(function (item) {
-          item.classList.add("is-visible");
-        });
-        if (manifesto) {
-          manifesto.classList.add("is-visible");
+    // Resize canvas on window resize
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    // 2. Flawless Typewriter Effect (Prevents cut-offs)
+    function typeWriter(elementId, text, speed, callback) {
+      const element = document.getElementById(elementId);
+      element.innerHTML = '';
+      let i = 0;
+      
+      function type() {
+        if (i < text.length) {
+          element.innerHTML = text.substring(0, i + 1) + '<span class="cursor-blink">_</span>';
+          i++;
+          setTimeout(type, speed);
+        } else {
+          element.innerHTML = text + '<span class="cursor-blink">_</span>';
+          if(callback) callback();
         }
       }
+      type();
+    }
 
-      function initReveals() {
-        if (reduceMotion || !("IntersectionObserver" in window)) {
-          showImmediately();
-          return;
-        }
+    // Trigger Hero Animation Immediately
+    setTimeout(() => {
+      typeWriter('type-hero', 'EQUIP YOUR AVATAR.', 80);
+    }, 500);
 
-        var observer = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (!entry.isIntersecting) {
-              return;
-            }
-
-            entry.target.classList.add("is-visible");
-            if (entry.target.classList.contains("manifesto")) {
-              entry.target.classList.add("is-visible");
-            }
-            observer.unobserve(entry.target);
+    // 3. Scroll Reveal for Brand Story
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Type out the header
+          typeWriter('type-story', '>_ DECRYPTING THE CULTURE', 50, () => {
+            // Fade in the paragraph after typing finishes
+            document.getElementById('story-body').classList.add('visible');
           });
-        }, {
-          threshold: 0.2,
-          rootMargin: "0px 0px -6% 0px"
-        });
+          observer.disconnect(); // Only run once
+        }
+      });
+    }, { threshold: 0.5 });
 
-        revealItems.forEach(function (item) {
-          observer.observe(item);
-        });
+    observer.observe(document.getElementById('origin-trigger'));
+
+    // 4. Countdown Timer Logic (Target: May 1, 2026)
+    const targetDate = new Date("2026-05-01T12:00:00+05:30").getTime(); // IST Timezone
+
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance > 0) {
+        document.getElementById("days").innerText = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
+        document.getElementById("hours").innerText = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+        document.getElementById("minutes").innerText = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+        document.getElementById("seconds").innerText = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
       }
-
-      updateCountdown();
-      window.setInterval(updateCountdown, 1000);
-      initReveals();
-    }());
+    }, 1000);
   </script>
 </body>
 </html>
