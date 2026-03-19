@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Vibe Canvas — Coming Soon | Level Up Your Fit</title>
-  <meta name="description" content="A new wave of fashion is coming. Join The Vibe Canvas early access waitlist and get exclusive launch benefits.">
+  <title>The Vibe Canvas | Streetwear for the Tech &amp; Cyber Culture</title>
+  <meta name="description" content="The Vibe Canvas is a premium streetwear brand designed for techies, ethical hackers, and Gen Z. The designated dress code for the modern future. Join the waitlist.">
+  <meta name="keywords" content="cyberpunk streetwear, techwear, hacker clothing, Gen Z fashion, anime streetwear, The Vibe Canvas">
   <meta name="theme-color" content="#000000">
-  <meta property="og:title" content="The Vibe Canvas — Coming Soon | Level Up Your Fit">
-  <meta property="og:description" content="A new wave of fashion is coming. Join The Vibe Canvas early access waitlist and get exclusive launch benefits.">
+  <meta property="og:title" content="The Vibe Canvas | Streetwear for the Tech &amp; Cyber Culture">
+  <meta property="og:description" content="The Vibe Canvas is a premium streetwear brand designed for techies, ethical hackers, and Gen Z. The designated dress code for the modern future. Join the waitlist.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://thevibecanvas.in/">
   <meta property="og:site_name" content="The Vibe Canvas">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="The Vibe Canvas — Coming Soon | Level Up Your Fit">
-  <meta name="twitter:description" content="A new wave of fashion is coming. Join The Vibe Canvas early access waitlist and get exclusive launch benefits.">
+  <meta name="twitter:title" content="The Vibe Canvas | Streetwear for the Tech &amp; Cyber Culture">
+  <meta name="twitter:description" content="The Vibe Canvas is a premium streetwear brand designed for techies, ethical hackers, and Gen Z. The designated dress code for the modern future. Join the waitlist.">
   <style>
     :root {
       --bg: #000000;
@@ -621,6 +622,56 @@
       color: var(--text-dim);
     }
 
+    .origin-section {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .origin-title {
+      position: relative;
+      display: inline-block;
+      margin: 0;
+      width: 0;
+      max-width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      font-family: var(--mono);
+      font-size: clamp(1.1rem, 3vw, 2.4rem);
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      border-right: 2px solid rgba(0, 255, 255, 0.85);
+      opacity: 0;
+    }
+
+    .origin-section.in-view .origin-title {
+      opacity: 1;
+      animation:
+        typewriter 1.5s steps(25, end) forwards,
+        cursor-blink 1s steps(1, end) infinite;
+    }
+
+    .origin-copy {
+      margin: 0;
+      max-width: 62rem;
+      line-height: 1.95;
+      color: var(--text-dim);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 680ms ease, transform 680ms ease;
+    }
+
+    .origin-section.in-view .origin-copy {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 1.6s;
+    }
+
+    .origin-highlight {
+      color: var(--cyan);
+      text-shadow: 0 0 12px rgba(0, 255, 255, 0.28);
+    }
+
     .countdown-panel {
       display: grid;
       gap: 1.2rem;
@@ -787,6 +838,11 @@
       100% { transform: translate3d(0, 0, 0) skewX(0deg); }
     }
 
+    @keyframes typewriter {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
     @media (max-width: 980px) {
       .hero-grid {
         grid-template-columns: 1fr;
@@ -854,6 +910,13 @@
       .reveal,
       .reveal[data-from="right"] {
         opacity: 1;
+        transform: none;
+      }
+
+      .origin-title,
+      .origin-copy {
+        opacity: 1;
+        width: auto;
         transform: none;
       }
     }
@@ -930,6 +993,13 @@
       </section>
 
       <div class="content-grid">
+        <section class="content-section reveal origin-section" aria-labelledby="origin-title">
+          <div class="section-head">
+            <h2 id="origin-title" class="origin-title">&gt;_ DECRYPTING THE CULTURE</h2>
+          </div>
+          <p class="origin-copy">&gt; "For too long, the <span class="origin-highlight">architects of tomorrow</span> have been invisible in the culture. The techies, the <span class="origin-highlight">ethical hackers</span>, the late-night coders, and the Gen-Z builders shaping the AI frontier&mdash;you are rewriting reality, yet the fashion world missed you. We are fixing the glitch. The Vibe Canvas is not just a brand; it is a syndicate. A <span class="origin-highlight">designated dress code</span> for the modern future. We are engineering streetwear with an aesthetic you inherently understand, but have never seen before. This is your uniform."</p>
+        </section>
+
         <section class="content-section reveal" aria-labelledby="data-title">
           <div class="section-head">
             <p class="section-kicker" id="data-title">&gt;_ COMPILING DATA...</p>
@@ -1184,7 +1254,7 @@
           for (var index = 0; index < metrics.columns; index += 1) {
             drops.push({
               y: Math.random() * metrics.height * -1,
-              speed: 0.8 + Math.random() * 1.8,
+              speed: 0.35 + Math.random() * 0.8,
               opacity: 0.15 + Math.random() * 0.35
             });
           }
@@ -1210,7 +1280,7 @@
             drop.y += metrics.fontSize * drop.speed;
             if (drop.y > metrics.height + metrics.fontSize * 3) {
               drop.y = Math.random() * metrics.height * -0.8;
-              drop.speed = 0.8 + Math.random() * 1.8;
+              drop.speed = 0.35 + Math.random() * 0.8;
               drop.opacity = 0.15 + Math.random() * 0.35;
             }
           }
