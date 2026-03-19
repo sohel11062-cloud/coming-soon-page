@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Vibe Canvas — Coming Soon | Level Up Your Fit</title>
+  <meta name="description" content="A new wave of fashion is coming. Join The Vibe Canvas early access waitlist and get exclusive launch benefits.">
+  <meta name="theme-color" content="#050505">
+  <meta property="og:title" content="The Vibe Canvas — Coming Soon | Level Up Your Fit">
+  <meta property="og:description" content="A new wave of fashion is coming. Join The Vibe Canvas early access waitlist and get exclusive launch benefits.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://thevibecanvas.in/">
+  <meta property="og:site_name" content="The Vibe Canvas">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Vibe Canvas — Coming Soon | Level Up Your Fit">
+  <meta name="twitter:description" content="A new wave of fashion is coming. Join The Vibe Canvas early access waitlist and get exclusive launch benefits.">
+  <style>
+    :root {
+      --bg: #050505;
+      --bg-soft: #0c0c0f;
+      --panel: rgba(255, 255, 255, 0.05);
+      --panel-strong: rgba(255, 255, 255, 0.1);
+      --line: rgba(255, 255, 255, 0.14);
+      --text: #f5f1ea;
+      --muted: rgba(245, 241, 234, 0.68);
+      --accent: #f5dca9;
+      --accent-soft: rgba(245, 220, 169, 0.22);
+      --glow: rgba(180, 224, 255, 0.18);
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+      --max-width: 1200px;
+      --radius: 28px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 50% -10%, rgba(245, 220, 169, 0.12), transparent 35%),
+        radial-gradient(circle at 20% 25%, rgba(68, 115, 154, 0.18), transparent 30%),
+        radial-gradient(circle at 80% 12%, rgba(255, 255, 255, 0.08), transparent 24%),
+        linear-gradient(180deg, #030303 0%, #07070a 35%, #050505 100%);
+      color: var(--text);
+      font-family: "Neue Haas Grotesk Text Pro", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(12px);
+    }
+
+    body::before {
+      top: -18vh;
+      left: 10vw;
+      width: 28vw;
+      height: 75vh;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.26), transparent 72%);
+      transform: rotate(17deg);
+      animation: sweep-left 11s ease-in-out infinite alternate;
+      opacity: 0.65;
+    }
+
+    body::after {
+      top: -22vh;
+      right: 8vw;
+      width: 24vw;
+      height: 72vh;
+      background: linear-gradient(180deg, rgba(245, 220, 169, 0.2), transparent 72%);
+      transform: rotate(-15deg);
+      animation: sweep-right 13s ease-in-out infinite alternate;
+      opacity: 0.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page-shell {
+      position: relative;
+      z-index: 1;
+      isolation: isolate;
+    }
+
+    .topbar {
+      width: min(calc(100% - 2rem), var(--max-width));
+      margin: 0 auto;
+      padding: 1.3rem 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-lockup {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .brand-mark {
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), transparent 38%),
+        radial-gradient(circle at 70% 75%, rgba(245, 220, 169, 0.45), transparent 32%),
+        rgba(255, 255, 255, 0.04);
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+        0 0 30px rgba(180, 224, 255, 0.15);
+    }
+
+    .topbar-link {
+      padding: 0.8rem 1.1rem;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
+      transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+    }
+
+    .topbar-link:hover,
+    .topbar-link:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(245, 220, 169, 0.45);
+      background: rgba(245, 220, 169, 0.08);
+      outline: none;
+    }
+
+    main {
+      width: min(calc(100% - 2rem), var(--max-width));
+      margin: 0 auto;
+      padding: 1.8rem 0 3rem;
+    }
+
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 6rem);
+      display: grid;
+      align-items: center;
+      padding: 4rem 0 3rem;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 12% 0 auto;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent);
+      opacity: 0.65;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.72fr);
+      gap: 2rem;
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.9rem;
+      margin-bottom: 1.3rem;
+      padding: 0.7rem 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.75rem;
+      color: var(--muted);
+      backdrop-filter: blur(16px);
+      animation: rise-in 1s cubic-bezier(.2, .7, .2, 1) both;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 24px rgba(245, 220, 169, 0.9);
+    }
+
+    h1,
+    h2,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      max-width: 8ch;
+      font-family: "Druk Wide", "Arial Black", "Impact", sans-serif;
+      font-size: clamp(3.9rem, 10vw, 8.8rem);
+      line-height: 0.9;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+      text-wrap: balance;
+      animation: rise-in 1s 0.15s cubic-bezier(.2, .7, .2, 1) both;
+    }
+
+    .hero-copy {
+      margin-top: 1.4rem;
+      max-width: 34rem;
+      display: grid;
+      gap: 0.85rem;
+      animation: rise-in 1s 0.3s cubic-bezier(.2, .7, .2, 1) both;
+    }
+
+    .hero-subtext {
+      font-size: clamp(1.1rem, 2vw, 1.45rem);
+      color: rgba(245, 241, 234, 0.85);
+      letter-spacing: 0.03em;
+    }
+
+    .hero-hype {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 28rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+      animation: rise-in 1s 0.45s cubic-bezier(.2, .7, .2, 1) both;
+    }
+
+    .primary-cta {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      min-width: 15rem;
+      padding: 1rem 1.45rem;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 220, 169, 0.28);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04)),
+        linear-gradient(135deg, rgba(245, 220, 169, 0.18), rgba(180, 224, 255, 0.16));
+      color: var(--text);
+      font-size: 0.83rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+        0 0 30px rgba(180, 224, 255, 0.15),
+        0 16px 50px rgba(0, 0, 0, 0.38);
+      transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .primary-cta::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent 25%, rgba(255, 255, 255, 0.34) 50%, transparent 75%);
+      transform: translateX(-140%);
+      transition: transform 700ms ease;
+      z-index: -1;
+    }
+
+    .primary-cta:hover,
+    .primary-cta:focus-visible {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow:
+        0 0 0 1px rgba(245, 220, 169, 0.12) inset,
+        0 0 44px rgba(245, 220, 169, 0.16),
+        0 18px 60px rgba(0, 0, 0, 0.42);
+      border-color: rgba(245, 220, 169, 0.48);
+      outline: none;
+    }
+
+    .primary-cta:hover::before,
+    .primary-cta:focus-visible::before {
+      transform: translateX(140%);
+    }
+
+    .secondary-note {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+      letter-spacing: 0.02em;
+    }
+
+    .secondary-note::before {
+      content: "";
+      width: 2.5rem;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(245, 220, 169, 0.6), transparent);
+    }
+
+    .hero-side {
+      position: relative;
+      justify-self: end;
+      width: min(100%, 420px);
+      padding: 1.35rem;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)),
+        rgba(9, 9, 11, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(22px);
+      overflow: hidden;
+      animation: rise-in 1s 0.55s cubic-bezier(.2, .7, .2, 1) both;
+    }
+
+    .hero-side::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 14rem;
+      margin-bottom: 1rem;
+      border-radius: calc(var(--radius) - 6px);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.3), transparent 22%),
+        radial-gradient(circle at 50% 28%, rgba(255, 255, 255, 0.32), transparent 34%),
+        radial-gradient(circle at 20% 76%, rgba(180, 224, 255, 0.24), transparent 24%),
+        radial-gradient(circle at 80% 76%, rgba(245, 220, 169, 0.28), transparent 24%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 -40px 70px rgba(0, 0, 0, 0.55);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-side::after {
+      content: "DROP 01";
+      position: absolute;
+      top: 2.6rem;
+      right: 2.2rem;
+      font-family: "Druk Wide", "Arial Black", "Impact", sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+      color: rgba(255, 255, 255, 0.84);
+      text-align: right;
+      text-shadow: 0 0 34px rgba(255, 255, 255, 0.16);
+      pointer-events: none;
+    }
+
+    .panel-meta {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .panel-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .panel-title {
+      font-size: 1.15rem;
+      line-height: 1.4;
+      color: rgba(245, 241, 234, 0.92);
+    }
+
+    .panel-copy {
+      font-size: 0.96rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .content-grid {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .section-card {
+      position: relative;
+      padding: clamp(1.35rem, 4vw, 2.3rem);
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+        rgba(10, 10, 13, 0.85);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .section-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+      transform: translateX(-100%);
+      opacity: 0;
+      transition: transform 900ms ease, opacity 400ms ease;
+    }
+
+    .section-card.in-view::before {
+      transform: translateX(100%);
+      opacity: 1;
+    }
+
+    .hype-block {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .hype-intro {
+      font-size: 0.78rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hype-line {
+      font-family: "Druk Wide", "Arial Black", "Impact", sans-serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: transform 700ms cubic-bezier(.2, .7, .2, 1), opacity 700ms ease;
+      text-wrap: balance;
+    }
+
+    .section-card.in-view .hype-line {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-card.in-view .hype-line:nth-child(2) {
+      transition-delay: 90ms;
+    }
+
+    .section-card.in-view .hype-line:nth-child(3) {
+      transition-delay: 180ms;
+    }
+
+    .section-card.in-view .hype-line:nth-child(4) {
+      transition-delay: 270ms;
+    }
+
+    .accent-line {
+      color: rgba(245, 220, 169, 0.98);
+      text-shadow: 0 0 28px rgba(245, 220, 169, 0.18);
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .detail-box {
+      display: grid;
+      gap: 0.65rem;
+      min-height: 100%;
+    }
+
+    .detail-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .detail-copy {
+      font-size: clamp(1.1rem, 2vw, 1.45rem);
+      line-height: 1.45;
+      color: rgba(245, 241, 234, 0.95);
+      max-width: 30rem;
+    }
+
+    .countdown-card {
+      display: grid;
+      gap: 1.35rem;
+    }
+
+    .countdown-head {
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .countdown-title {
+      font-family: "Druk Wide", "Arial Black", "Impact", sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.4rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    .countdown-subtitle {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+
+    .count-unit {
+      padding: 1rem 0.8rem;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+        rgba(255, 255, 255, 0.02);
+      text-align: center;
+    }
+
+    .count-value {
+      display: block;
+      font-family: "Druk Wide", "Arial Black", "Impact", sans-serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: var(--text);
+    }
+
+    .count-label {
+      display: block;
+      margin-top: 0.4rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .countdown-status {
+      min-height: 1.3rem;
+      font-size: 0.85rem;
+      color: rgba(245, 220, 169, 0.88);
+      letter-spacing: 0.04em;
+    }
+
+    footer {
+      width: min(calc(100% - 2rem), var(--max-width));
+      margin: 0 auto;
+      padding: 0 0 2rem;
+    }
+
+    .footer-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.4rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.72rem;
+    }
+
+    .footer-brand {
+      color: var(--text);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @keyframes rise-in {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes sweep-left {
+      from {
+        transform: rotate(12deg) translate3d(0, 0, 0);
+      }
+      to {
+        transform: rotate(20deg) translate3d(2vw, 4vh, 0);
+      }
+    }
+
+    @keyframes sweep-right {
+      from {
+        transform: rotate(-19deg) translate3d(0, 0, 0);
+      }
+      to {
+        transform: rotate(-11deg) translate3d(-2vw, 3vh, 0);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .details-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-side {
+        justify-self: stretch;
+        width: 100%;
+      }
+
+      .countdown-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        padding-top: 1rem;
+      }
+
+      main {
+        padding-top: 1rem;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 3rem 0 2rem;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-actions {
+        align-items: stretch;
+      }
+
+      .primary-cta {
+        width: 100%;
+      }
+
+      .countdown-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .brand-lockup,
+      .footer-card {
+        letter-spacing: 0.16em;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .hype-line {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand-lockup" aria-label="The Vibe Canvas">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>THE VIBE CANVAS</span>
+      </div>
+      <a class="topbar-link" href="https://waitlist.thevibecanvas.in/">Early Access</a>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">Coming Soon</p>
+            <h1 id="hero-title">LEVEL UP YOUR FIT</h1>
+            <div class="hero-copy">
+              <p class="hero-subtext">Where code meets culture.</p>
+              <p class="hero-hype">A new wave of fashion is loading.</p>
+            </div>
+
+            <div class="hero-actions">
+              <a class="primary-cta" href="https://waitlist.thevibecanvas.in/" aria-label="Join The Vibe Canvas waitlist">
+                <span>Join The Waitlist</span>
+              </a>
+              <p class="secondary-note">Early access unlocks the first look before the drop goes live.</p>
+            </div>
+          </div>
+
+          <aside class="hero-side" aria-label="Launch preview">
+            <div class="panel-meta">
+              <span class="panel-label">Launch Signal</span>
+              <p class="panel-title">Luxury streetwear energy shaped into a clean, cinematic first impression.</p>
+              <p class="panel-copy">Minimal form. Runway mood. A sharp build-up designed to turn curiosity into waitlist demand.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <div class="content-grid">
+        <section class="section-card observe" aria-labelledby="hype-title">
+          <div class="hype-block">
+            <p class="hype-intro" id="hype-title">The signal is getting louder</p>
+            <h2 class="hype-line">BUILT FOR THE CULTURE</h2>
+            <h2 class="hype-line">DESIGNED FOR THE FUTURE</h2>
+            <h2 class="hype-line accent-line">DROP 01 IS COMING</h2>
+          </div>
+        </section>
+
+        <section class="section-card observe details-grid" aria-labelledby="offer-title">
+          <div class="detail-box">
+            <p class="detail-label" id="offer-title">Early Access Offer</p>
+            <p class="detail-copy">Early access members receive an exclusive 10% launch discount.</p>
+          </div>
+          <div class="detail-box">
+            <p class="detail-label">Priority Notice</p>
+            <p class="detail-copy">Your code will be sent 24 hours before launch.</p>
+          </div>
+        </section>
+
+        <section class="section-card observe countdown-card" aria-labelledby="countdown-title">
+          <div class="countdown-head">
+            <p class="detail-label">Launch Countdown</p>
+            <h2 class="countdown-title" id="countdown-title">May 1, 2026 • 12:00 PM IST</h2>
+            <p class="countdown-subtitle">Claim your place before the first release opens and the early access window closes.</p>
+          </div>
+
+          <div class="countdown-grid" role="timer" aria-live="polite" aria-atomic="true">
+            <div class="count-unit">
+              <span class="count-value" id="days">00</span>
+              <span class="count-label">Days</span>
+            </div>
+            <div class="count-unit">
+              <span class="count-value" id="hours">00</span>
+              <span class="count-label">Hours</span>
+            </div>
+            <div class="count-unit">
+              <span class="count-value" id="minutes">00</span>
+              <span class="count-label">Minutes</span>
+            </div>
+            <div class="count-unit">
+              <span class="count-value" id="seconds">00</span>
+              <span class="count-label">Seconds</span>
+            </div>
+          </div>
+
+          <p class="countdown-status" id="countdown-status">
+            <span class="sr-only">Countdown status:</span>
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-card">
+        <span class="footer-brand">The Vibe Canvas</span>
+        <span>Level Up Your Fit</span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var launchDate = new Date("2026-05-01T12:00:00+05:30");
+      var units = {
+        days: document.getElementById("days"),
+        hours: document.getElementById("hours"),
+        minutes: document.getElementById("minutes"),
+        seconds: document.getElementById("seconds")
+      };
+      var status = document.getElementById("countdown-status");
+
+      function formatUnit(value) {
+        return String(value).padStart(2, "0");
+      }
+
+      function updateCountdown() {
+        var now = new Date();
+        var distance = launchDate.getTime() - now.getTime();
+
+        if (distance <= 0) {
+          units.days.textContent = "00";
+          units.hours.textContent = "00";
+          units.minutes.textContent = "00";
+          units.seconds.textContent = "00";
+          status.textContent = "The launch window is live.";
+          return;
+        }
+
+        var totalSeconds = Math.floor(distance / 1000);
+        var days = Math.floor(totalSeconds / 86400);
+        var hours = Math.floor((totalSeconds % 86400) / 3600);
+        var minutes = Math.floor((totalSeconds % 3600) / 60);
+        var seconds = totalSeconds % 60;
+
+        units.days.textContent = formatUnit(days);
+        units.hours.textContent = formatUnit(hours);
+        units.minutes.textContent = formatUnit(minutes);
+        units.seconds.textContent = formatUnit(seconds);
+        status.textContent = "May 1, 2026 at 12:00 PM IST.";
+      }
+
+      updateCountdown();
+      window.setInterval(updateCountdown, 1000);
+
+      var observers = document.querySelectorAll(".observe");
+      if (!("IntersectionObserver" in window)) {
+        observers.forEach(function (element) {
+          element.classList.add("in-view");
+        });
+        return;
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.25
+      });
+
+      observers.forEach(function (element) {
+        observer.observe(element);
+      });
+    }());
+  </script>
+</body>
+</html>
