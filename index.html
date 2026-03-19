@@ -5,38 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Vibe Canvas | Streetwear for the Tech & Cyber Culture</title>
   <meta name="description" content="The Vibe Canvas is a premium streetwear brand designed for techies, ethical hackers, and Gen Z. The designated dress code for the modern future.">
-  <meta name="keywords" content="cyberpunk streetwear, techwear, hacker clothing, Gen Z fashion, anime streetwear, The Vibe Canvas">
   <meta property="og:title" content="The Vibe Canvas | Streetwear for the Tech & Cyber Culture">
   <meta property="og:description" content="The Vibe Canvas is a premium streetwear brand designed for techies, ethical hackers, and Gen Z. The designated dress code for the modern future.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://waitlist.thevibecanvas.in/">
+  <meta property="og:url" content="https://thevibecanvas.in/">
   <meta name="theme-color" content="#000000">
-  
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Rajdhani:wght@500;600;700&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap");
 
     :root {
-      --bg-color: #000000;
-      --cyan-neon: #00FFFF;
-      --cyan-dim: rgba(0, 255, 255, 0.15);
-      --text-main: #FFFFFF;
-      --text-muted: #A0ABC0;
-      --panel-bg: rgba(5, 10, 15, 0.8);
-      --font-mono: 'Space Mono', monospace;
-      --font-sans: 'Rajdhani', sans-serif;
+      --bg: #000000;
+      /* Deepened the panel colors to make the Cyan pop */
+      --panel: rgba(0, 10, 15, 0.65);
+      --panel-strong: rgba(0, 15, 25, 0.85);
+      --text: #ffffff;
+      --muted: #8892b0;
+      /* Pure Neon Cyan applied globally */
+      --accent: #00FFFF;
+      --accent-soft: rgba(0, 255, 255, 0.15);
+      --line: rgba(0, 255, 255, 0.3);
+      --line-strong: rgba(0, 255, 255, 0.6);
+      --max-width: 1180px;
+      --radius: 24px;
+      --display: "Space Mono", monospace;
+      --body: "Rajdhani", system-ui, sans-serif;
     }
 
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      font-family: var(--font-sans);
+      margin: 0;
       min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
       overflow-x: hidden;
     }
 
@@ -47,372 +55,645 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      z-index: -2;
-      opacity: 0.6; /* Keeps it ambient */
+      z-index: 0;
+      opacity: 0.35;
+      pointer-events: none;
     }
 
-    /* CRT Monitor Overlay */
-    .crt-overlay {
+    .scanlines {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 999;
+      inset: 0;
+      z-index: 2;
       pointer-events: none;
-      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-      background-size: 100% 2px, 3px 100%;
-      box-shadow: inset 0 0 100px rgba(0,0,0,0.9);
-      opacity: 0.4;
+      background:
+        radial-gradient(circle at center, transparent 55%, rgba(0, 0, 0, 0.5) 100%),
+        repeating-linear-gradient(
+          180deg,
+          rgba(0, 255, 255, 0.02) 0,
+          rgba(0, 255, 255, 0.02) 1px,
+          transparent 1px,
+          transparent 4px
+        );
+      opacity: 0.8;
+    }
+
+    .page {
+      position: relative;
+      z-index: 3;
     }
 
     .shell {
-      max-width: 1200px;
+      width: min(calc(100% - 2rem), var(--max-width));
       margin: 0 auto;
-      padding: 0 20px;
-      position: relative;
-      z-index: 1;
     }
 
-    /* Navigation */
-    header {
-      padding: 30px 0;
+    .topbar {
+      padding: 1.4rem 0 0;
+    }
+
+    .nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-family: var(--font-mono);
-      font-size: 0.9rem;
-      border-bottom: 1px solid var(--cyan-dim);
+      gap: 1rem;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      box-shadow:
+        inset 0 0 0 1px rgba(0, 255, 255, 0.1),
+        0 0 28px rgba(0, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
     }
 
-    .brand-logo {
-      color: var(--cyan-neon);
-      text-shadow: 0 0 8px var(--cyan-neon);
+    .brand, .nav-status {
+      font-family: var(--display);
       font-weight: 700;
-      letter-spacing: 2px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
     }
 
-    .status {
-      color: var(--text-muted);
+    .brand {
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
+    }
+
+    .nav-status {
+      color: var(--muted);
+    }
+
+    .nav-status::after {
+      content: "";
+      display: inline-block;
+      width: 0.5rem;
+      height: 0.5rem;
+      margin-left: 0.75rem;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+
+    main {
+      padding: 1.8rem 0 2.5rem;
+    }
+
+    .hero, .manifesto, .culture, .drop, footer {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow:
+        inset 0 0 0 1px rgba(0, 255, 255, 0.05),
+        0 0 32px rgba(0, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      margin-bottom: 1rem;
+    }
+
+    .hero {
+      min-height: calc(100vh - 7rem);
+      display: grid;
+      align-items: center;
+      padding: clamp(2.5rem, 8vw, 5rem) clamp(1.4rem, 4vw, 2.6rem);
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+      gap: 1.5rem;
+      align-items: end;
+    }
+
+    .eyebrow, .section-kicker, .drop-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      width: fit-content;
+      padding: 0.6rem 0.95rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(0, 255, 255, 0.05);
+      color: var(--accent);
+      font-family: var(--display);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px var(--accent);
+      box-shadow: 0 0 18px rgba(0, 255, 255, 0.1);
+    }
+
+    .eyebrow::before, .section-kicker::before, .drop-meta::before {
+      content: "";
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent);
+    }
+
+    .hero-copy {
+      display: grid;
+      gap: 1.05rem;
+      max-width: 42rem;
+    }
+
+    .hero-title, .section-title, .drop-title {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-shadow: 0 0 15px rgba(0, 255, 255, 0.4), 0 0 30px rgba(0, 255, 255, 0.2);
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      min-height: 2.2em; /* Prevents layout jump */
     }
 
     .cursor-blink {
       animation: blink 1s step-end infinite;
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--accent);
     }
 
     @keyframes blink { 50% { opacity: 0; } }
 
-    /* Hero Section */
-    .hero {
-      height: 70vh;
+    .hero-subtag {
+      margin: 0;
+      color: var(--accent);
+      font-family: var(--display);
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px var(--accent);
+    }
+
+    .hero-body, .manifesto-intro, .drop-copy, .footer-copy, .tribe-copy {
+      margin: 0;
+      color: var(--muted);
+      font-family: var(--body);
+      font-size: 1.1rem;
+      font-weight: 500;
+      line-height: 1.7;
+      max-width: 40rem;
+    }
+
+    .hero-actions {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .cta-primary, .cta-secondary {
+      position: relative;
+      display: inline-flex;
       align-items: center;
-      text-align: center;
-      border-bottom: 1px solid var(--cyan-dim);
-    }
-
-    .hero-sub {
-      color: var(--cyan-neon);
-      font-family: var(--font-mono);
-      letter-spacing: 4px;
-      font-size: 0.9rem;
-      margin-bottom: 20px;
-    }
-
-    .hero-title {
-      font-family: var(--font-mono);
-      font-size: clamp(2.5rem, 6vw, 5rem);
+      justify-content: center;
+      min-width: 13.5rem;
+      padding: 1rem 1.35rem;
+      border-radius: 8px; /* Sharper edges for tech vibe */
+      font-family: var(--display);
+      font-size: 0.92rem;
       font-weight: 700;
-      color: var(--text-main);
-      text-shadow: 0 0 10px var(--cyan-neon), 0 0 20px var(--cyan-neon), 0 0 40px var(--cyan-neon);
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      margin-bottom: 20px;
-      min-height: 1.2em; /* Prevents layout jump while typing */
-    }
-
-    .hero-body {
-      color: var(--text-muted);
-      font-size: 1.2rem;
-      max-width: 600px;
-      line-height: 1.6;
-      margin-bottom: 40px;
-    }
-
-    /* Cyan Neon Button */
-    .btn-cyber {
-      display: inline-block;
-      padding: 15px 30px;
-      background: transparent;
-      color: var(--cyan-neon);
-      font-family: var(--font-mono);
-      font-size: 1rem;
-      font-weight: 700;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      border: 1px solid var(--cyan-neon);
-      box-shadow: 0 0 10px var(--cyan-dim), inset 0 0 10px var(--cyan-dim);
-      transition: all 0.3s ease;
+      transition: all 200ms ease;
       cursor: pointer;
     }
 
-    .btn-cyber:hover {
-      background: var(--cyan-neon);
-      color: var(--bg-color);
-      box-shadow: 0 0 20px var(--cyan-neon), inset 0 0 10px var(--cyan-neon);
+    .cta-primary {
+      border: 1px solid var(--accent);
+      background: rgba(0, 255, 255, 0.1);
+      box-shadow: 0 0 15px var(--accent-soft), inset 0 0 10px var(--accent-soft);
+      color: var(--accent);
+      text-shadow: 0 0 8px var(--accent);
     }
 
-    /* Brand Story / Origin File */
-    .origin-file {
-      padding: 100px 0;
+    .cta-primary:hover {
+      background: var(--accent);
+      color: var(--bg);
+      box-shadow: 0 0 25px var(--accent), inset 0 0 15px var(--accent);
+      text-shadow: none;
+    }
+
+    .hero-support {
+      margin: 0.25rem 0 0;
+      color: var(--accent);
+      font-family: var(--display);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+    }
+
+    .hero-side {
+      justify-self: end;
+      width: min(100%, 390px);
+      padding: 1.2rem;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--panel-strong);
+      box-shadow: inset 0 0 0 1px rgba(0, 255, 255, 0.1), 0 0 30px rgba(0, 255, 255, 0.05);
+    }
+
+    .hero-side-visual {
+      height: 15rem;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 50% 25%, rgba(0, 255, 255, 0.1), transparent 30%),
+        linear-gradient(180deg, rgba(0, 15, 25, 0.2), rgba(0, 15, 25, 0.9));
+      box-shadow: inset 0 -50px 80px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero-side-copy {
+      margin-top: 1rem;
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 30px;
-      background: radial-gradient(circle at center, rgba(0, 255, 255, 0.05) 0%, transparent 70%);
+      gap: 0.55rem;
+    }
+
+    .hero-side-label {
+      color: var(--accent);
+      font-family: var(--display);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .hero-side-text {
+      margin: 0;
+      color: var(--text);
+      font-family: var(--body);
+      font-size: 1.25rem;
+      line-height: 1.35;
+    }
+
+    .manifesto, .culture, .drop, footer {
+      padding: clamp(1.4rem, 4vw, 2.4rem);
     }
 
     .section-header {
-      font-family: var(--font-mono);
-      font-size: 1.5rem;
-      color: var(--cyan-neon);
-      margin-bottom: 30px;
-      min-height: 1.5em;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 0.95rem;
+      margin-bottom: 2rem;
     }
 
-    .story-text {
-      font-size: 1.3rem;
-      line-height: 1.8;
-      color: var(--text-muted);
-      max-width: 800px;
+    .section-title {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+    }
+
+    .manifesto-lines {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .manifesto-line {
+      margin: 0;
+      max-width: 50rem;
+      color: var(--text);
+      font-family: var(--body);
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      font-weight: 500;
+      line-height: 1.4;
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 1s ease, transform 1s ease;
+      transform: translateY(24px);
+      transition: opacity 640ms ease, transform 640ms ease;
+      transition-delay: calc(var(--line-index) * 150ms);
     }
 
-    .story-text.visible {
+    .manifesto-line span {
+      color: var(--accent);
+      text-shadow: 0 0 12px var(--accent-soft);
+      font-family: var(--display);
+      font-weight: 700;
+    }
+
+    .manifesto.is-visible .manifesto-line, .is-visible .manifesto-line {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .highlight {
-      color: var(--text-main);
-      text-shadow: 0 0 8px var(--cyan-neon);
-      font-weight: 600;
+    .culture-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
     }
 
-    /* Countdown Section */
-    .countdown-section {
-      padding: 80px 0 120px;
-      text-align: center;
-      border-top: 1px solid var(--cyan-dim);
+    .tribe-card {
+      padding: 1.5rem;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel-strong);
+      transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
     }
 
-    .countdown-title {
-      font-family: var(--font-mono);
-      color: var(--text-muted);
-      letter-spacing: 3px;
-      margin-bottom: 40px;
+    .tribe-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+      box-shadow: 0 0 20px var(--accent-soft), inset 0 0 10px var(--accent-soft);
     }
 
-    .timer-grid {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .time-box {
-      background: var(--panel-bg);
-      border: 1px solid var(--cyan-neon);
-      box-shadow: 0 0 15px var(--cyan-dim);
-      padding: 20px 30px;
-      min-width: 120px;
-    }
-
-    .time-val {
-      display: block;
-      font-family: var(--font-mono);
-      font-size: 3rem;
-      color: var(--text-main);
-      text-shadow: 0 0 10px var(--cyan-neon);
-      font-weight: 700;
-    }
-
-    .time-label {
-      display: block;
-      font-family: var(--font-sans);
-      color: var(--cyan-neon);
+    .tribe-index {
+      color: var(--accent);
+      font-family: var(--display);
       font-size: 0.9rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-top: 5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
     }
 
-    footer {
+    .tribe-title {
+      margin: 1rem 0 0.5rem;
+      color: var(--text);
+      font-family: var(--display);
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+    }
+
+    .drop-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.8fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .count-unit {
+      padding: 1rem 0.5rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-strong);
+      box-shadow: 0 0 15px var(--accent-soft);
       text-align: center;
-      padding: 40px 20px;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--cyan-neon);
-      border-top: 1px solid var(--cyan-dim);
-      background: #000;
+    }
+
+    .count-value {
+      display: block;
+      color: var(--accent);
+      font-family: var(--display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1;
+      text-shadow: 0 0 15px var(--accent);
+    }
+
+    .count-label {
+      display: block;
+      margin-top: 0.5rem;
+      color: var(--muted);
+      font-family: var(--display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 800ms ease, transform 800ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .footer-copy {
+      max-width: none;
+      color: var(--accent);
+      font-family: var(--display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+      text-shadow: 0 0 10px var(--accent-soft);
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 8px var(--accent); opacity: 0.8; }
+      50% { box-shadow: 0 0 16px var(--accent); opacity: 1; }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid, .drop-grid { grid-template-columns: 1fr; }
+      .hero-side { width: 100%; }
+    }
+    @media (max-width: 680px) {
+      .nav { flex-direction: column; align-items: flex-start; border-radius: 12px; }
+      .countdown { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero-actions { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-
+  
   <canvas id="matrix-canvas"></canvas>
-  <div class="crt-overlay"></div>
+  <div class="scanlines" aria-hidden="true"></div>
 
-  <div class="shell">
-    <header>
-      <div class="brand-logo">THE VIBE CANVAS</div>
-      <div class="status">>_ STATUS: SYSTEM BOOTING<span class="cursor-blink">_</span></div>
+  <div class="page">
+    <header class="topbar shell">
+      <nav class="nav" aria-label="Top navigation">
+        <div class="brand">THE VIBE CANVAS</div>
+        <div class="nav-status">>_ STATUS: SYSTEM BOOTING</div>
+      </nav>
     </header>
 
-    <section class="hero">
-      <div class="hero-sub">SYSTEM INITIALIZATION...</div>
-      <h1 class="hero-title" id="type-hero"></h1>
-      <p class="hero-body">Bridge the gap between code and culture. The mainframe is booting. Prepare for Hardware Drop v1.0.</p>
-      <a href="https://waitlist.thevibecanvas.in/" class="btn-cyber">[ INITIALIZE_AVATAR ]</a>
-    </section>
+    <main class="shell">
+      <section class="hero">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow reveal">Hardware Drop v1.0</p>
+            
+            <h1 class="hero-title reveal" id="type-target"></h1>
+            
+            <p class="hero-subtag reveal">Code &times; Culture</p>
+            <p class="hero-body reveal">Bridge the gap between code and culture. The mainframe is booting. A signal flare for the culture that never saw itself reflected in fashion.</p>
+            <div class="hero-actions reveal">
+              <a class="cta-primary" href="https://waitlist.thevibecanvas.in/">[ INITIALIZE_AVATAR ]</a>
+            </div>
+            <p class="hero-support reveal">Initialize to secure 5,000 Creds + Decryption Key</p>
+          </div>
 
-    <section class="origin-file" id="origin-trigger">
-      <h2 class="section-header" id="type-story"></h2>
-      <p class="story-text" id="story-body">
-        For too long, the <span class="highlight">architects of tomorrow</span> have been invisible in the culture. The techies, the ethical hackers, the late-night coders, and the Gen-Z builders shaping the AI frontier—you are rewriting reality, yet the fashion world missed you. We are fixing the glitch. The Vibe Canvas is not just a brand; it is a syndicate. A <span class="highlight">designated dress code</span> for the modern future. We are engineering streetwear with an aesthetic you inherently understand, but have never seen before. This is your uniform.
-      </p>
-    </section>
+          <aside class="hero-side reveal" aria-label="Campaign preview">
+            <div class="hero-side-visual"></div>
+            <div class="hero-side-copy">
+              <span class="hero-side-label">System Architecture</span>
+              <p class="hero-side-text">Luxury streetwear energy engineered for builders, hackers, and the ones turning culture into code.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
 
-    <section class="countdown-section">
-      <h3 class="countdown-title">ESTIMATED BOOT TIME</h3>
-      <div class="timer-grid">
-        <div class="time-box">
-          <span class="time-val" id="days">00</span>
-          <span class="time-label">Days</span>
+      <section class="manifesto reveal" id="manifesto-section">
+        <div class="section-header">
+          <p class="section-kicker">Origin File</p>
+          <h2 class="section-title">DECRYPTING THE CULTURE</h2>
         </div>
-        <div class="time-box">
-          <span class="time-val" id="hours">00</span>
-          <span class="time-label">Hours</span>
+        <div class="manifesto-lines">
+          <p class="manifesto-line" style="--line-index: 0;">For too long, the <span>architects of tomorrow</span> have been invisible.</p>
+          <p class="manifesto-line" style="--line-index: 1;">The techies, the ethical hackers, the late-night coders.</p>
+          <p class="manifesto-line" style="--line-index: 2;">You are rewriting reality, yet the fashion world missed you.</p>
+          <p class="manifesto-line" style="--line-index: 3;">We are fixing the glitch. <span>The Vibe Canvas</span> is your uniform.</p>
+          <p class="manifesto-line" style="--line-index: 4;">A designated dress code for the modern future.</p>
         </div>
-        <div class="time-box">
-          <span class="time-val" id="minutes">00</span>
-          <span class="time-label">Minutes</span>
+      </section>
+
+      <section class="culture reveal">
+        <div class="section-header">
+          <p class="section-kicker">The Syndicate</p>
+          <h2 class="section-title">CHOOSE YOUR CLASS</h2>
         </div>
-        <div class="time-box">
-          <span class="time-val" id="seconds">00</span>
-          <span class="time-label">Seconds</span>
+        <div class="culture-grid">
+          <article class="tribe-card">
+            <span class="tribe-index">01</span>
+            <h3 class="tribe-title">Developers</h3>
+            <p class="tribe-copy">Writing the systems that quietly run the world.</p>
+          </article>
+          <article class="tribe-card">
+            <span class="tribe-index">02</span>
+            <h3 class="tribe-title">Netrunners</h3>
+            <p class="tribe-copy">Understanding the architecture by knowing where it breaks.</p>
+          </article>
+          <article class="tribe-card">
+            <span class="tribe-index">03</span>
+            <h3 class="tribe-title">Architects</h3>
+            <p class="tribe-copy">Translating interfaces and digital identity into physical form.</p>
+          </article>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section class="drop reveal">
+        <div class="drop-grid">
+          <div class="drop-stack">
+            <p class="drop-meta">Drop Protocol</p>
+            <h2 class="drop-title">HARDWARE 01</h2>
+            <p class="drop-copy">A first release engineered like a statement piece: sharp, cinematic, and made for the culture building the future in plain sight.</p>
+            <div class="hero-actions" style="margin-top: 1rem;">
+              <a class="cta-primary" href="https://waitlist.thevibecanvas.in/">[ SECURE_ACCESS ]</a>
+            </div>
+          </div>
+          <div>
+            <p class="drop-meta" style="margin-bottom: 0.5rem; background: transparent; border: none; box-shadow: none;">ESTIMATED BOOT TIME</p>
+            <div class="countdown" id="countdown-timer">
+              <div class="count-unit"><span id="days" class="count-value">00</span><span class="count-label">Days</span></div>
+              <div class="count-unit"><span id="hours" class="count-value">00</span><span class="count-label">Hours</span></div>
+              <div class="count-unit"><span id="minutes" class="count-value">00</span><span class="count-label">Minutes</span></div>
+              <div class="count-unit"><span id="seconds" class="count-value">00</span><span class="count-label">Seconds</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="shell">
+      <p class="footer-copy">>_ SYSTEM LOG: AWAITING USER INITIALIZATION...</p>
+    </footer>
   </div>
 
-  <footer>
-    >_ INITIALIZE YOUR AVATAR BEFORE THE TIMER ENDS TO RECEIVE 5,000 CREDS.
-  </footer>
-
   <script>
-    // 1. Ambient Matrix Rain (Slowed down and Cyan)
+    // 1. Bulletproof Typewriter Logic
+    document.addEventListener("DOMContentLoaded", () => {
+      const target = document.getElementById("type-target");
+      const text = "EQUIP YOUR AVATAR.";
+      let i = 0;
+
+      function type() {
+        if (i < text.length) {
+          target.innerHTML = text.substring(0, i + 1) + '<span class="cursor-blink">_</span>';
+          i++;
+          setTimeout(type, 80); // Speed of typing
+        }
+      }
+      setTimeout(type, 500); // Initial delay
+    });
+
+    // 2. Slowed Ambient Matrix Rain
     const canvas = document.getElementById('matrix-canvas');
     const ctx = canvas.getContext('2d');
     
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
     
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*<>[]{}/\\'.split('');
-    const fontSize = 14;
+    const fontSize = 16;
     const columns = canvas.width / fontSize;
     const drops = [];
     
-    for(let x = 0; x < columns; x++) {
-      drops[x] = Math.random() * canvas.height; // Random start height
-    }
+    for(let x = 0; x < columns; x++) { drops[x] = Math.random() * canvas.height; }
     
     function drawMatrix() {
-      // Very slow fade for smooth trails
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      // Cyan text
-      ctx.fillStyle = 'rgba(0, 255, 255, 0.25)'; 
+      ctx.fillStyle = 'rgba(0, 255, 255, 0.25)'; // Cyan text
       ctx.font = fontSize + 'px "Space Mono"';
       
       for(let i = 0; i < drops.length; i++) {
         const text = chars[Math.floor(Math.random() * chars.length)];
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        
-        // Slower reset
-        if(drops[i] * fontSize > canvas.height && Math.random() > 0.99) {
-          drops[i] = 0;
-        }
-        // Slower fall speed
-        drops[i] += 0.5; 
+        if(drops[i] * fontSize > canvas.height && Math.random() > 0.98) { drops[i] = 0; }
+        drops[i] += 0.4; // Slower falling speed
       }
     }
-    setInterval(drawMatrix, 50);
+    setInterval(drawMatrix, 40);
 
-    // Resize canvas on window resize
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
+    // 3. Scroll Reveal & Countdown Logic (Preserved from original)
+    (function () {
+      var targetDate = new Date("2026-05-01T12:00:00+05:30").getTime();
+      var units = { d: document.getElementById("days"), h: document.getElementById("hours"), m: document.getElementById("minutes"), s: document.getElementById("seconds") };
 
-    // 2. Flawless Typewriter Effect (Prevents cut-offs)
-    function typeWriter(elementId, text, speed, callback) {
-      const element = document.getElementById(elementId);
-      element.innerHTML = '';
-      let i = 0;
-      
-      function type() {
-        if (i < text.length) {
-          element.innerHTML = text.substring(0, i + 1) + '<span class="cursor-blink">_</span>';
-          i++;
-          setTimeout(type, speed);
-        } else {
-          element.innerHTML = text + '<span class="cursor-blink">_</span>';
-          if(callback) callback();
-        }
+      function updateTimer() {
+        var now = new Date().getTime();
+        var diff = targetDate - now;
+        if (diff <= 0) return;
+        units.d.textContent = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+        units.h.textContent = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+        units.m.textContent = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+        units.s.textContent = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
       }
-      type();
-    }
+      setInterval(updateTimer, 1000);
+      updateTimer();
 
-    // Trigger Hero Animation Immediately
-    setTimeout(() => {
-      typeWriter('type-hero', 'EQUIP YOUR AVATAR.', 80);
-    }, 500);
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
 
-    // 3. Scroll Reveal for Brand Story
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Type out the header
-          typeWriter('type-story', '>_ DECRYPTING THE CULTURE', 50, () => {
-            // Fade in the paragraph after typing finishes
-            document.getElementById('story-body').classList.add('visible');
-          });
-          observer.disconnect(); // Only run once
-        }
-      });
-    }, { threshold: 0.5 });
-
-    observer.observe(document.getElementById('origin-trigger'));
-
-    // 4. Countdown Timer Logic (Target: May 1, 2026)
-    const targetDate = new Date("2026-05-01T12:00:00+05:30").getTime(); // IST Timezone
-
-    setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      if (distance > 0) {
-        document.getElementById("days").innerText = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
-        document.getElementById("hours").innerText = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-        document.getElementById("minutes").innerText = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-        document.getElementById("seconds").innerText = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
-      }
-    }, 1000);
+      document.querySelectorAll(".reveal").forEach(function(el) { observer.observe(el); });
+    })();
   </script>
 </body>
 </html>
