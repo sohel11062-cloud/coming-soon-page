@@ -3,697 +3,1027 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Vibe Canvas | Streetwear for the Tech & Cyber Culture</title>
-  <meta name="description" content="The Vibe Canvas is a premium streetwear brand designed for techies, ethical hackers, and Gen Z. The designated dress code for the modern future.">
-  <meta property="og:title" content="The Vibe Canvas | Streetwear for the Tech & Cyber Culture">
-  <meta property="og:description" content="The Vibe Canvas is a premium streetwear brand designed for techies, ethical hackers, and Gen Z. The designated dress code for the modern future.">
+  <title>The Vibe Canvas | Premium Fashion Brand</title>
+  <meta name="description" content="The Vibe Canvas is a premium fashion brand shaped by identity, culture, originality, craftsmanship, community, discipline, evolution, and belonging.">
+  <meta name="author" content="The Vibe Canvas">
+  <meta name="theme-color" content="#050505">
+  <link rel="canonical" href="https://www.thevibecanvas.in/">
+
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://thevibecanvas.in/">
-  <meta name="theme-color" content="#000000">
+  <meta property="og:site_name" content="The Vibe Canvas">
+  <meta property="og:title" content="The Vibe Canvas | Premium Fashion Brand">
+  <meta property="og:description" content="A premium fashion brand inspired by identity, culture, originality, craftsmanship, community, and evolution.">
+  <meta property="og:image" content="https://www.thevibecanvas.in/assets/share-card.webp">
+  <meta property="og:url" content="https://www.thevibecanvas.in/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Vibe Canvas | Premium Fashion Brand">
+  <meta name="twitter:description" content="A premium fashion brand inspired by identity, culture, originality, craftsmanship, community, and evolution.">
+  <meta name="twitter:image" content="https://www.thevibecanvas.in/assets/share-card.webp">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/hero-campaign.webp">
+  <script>
+    try {
+      if (!localStorage.getItem("tvcWelcomeIntroSeen")) {
+        document.documentElement.classList.add("intro-active");
+        localStorage.setItem("tvcWelcomeIntroSeen", "true");
+      }
+    } catch (error) {
+      document.documentElement.classList.add("intro-active");
+    }
+  </script>
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap");
-
     :root {
-      --bg: #000000;
-      /* Deepened the panel colors to make the Cyan pop */
-      --panel: rgba(0, 10, 15, 0.65);
-      --panel-strong: rgba(0, 15, 25, 0.85);
-      --text: #ffffff;
-      --muted: #8892b0;
-      /* Pure Neon Cyan applied globally */
-      --accent: #00FFFF;
-      --accent-soft: rgba(0, 255, 255, 0.15);
-      --line: rgba(0, 255, 255, 0.3);
-      --line-strong: rgba(0, 255, 255, 0.6);
-      --max-width: 1180px;
-      --radius: 24px;
-      --display: "Space Mono", monospace;
-      --body: "Rajdhani", system-ui, sans-serif;
+      --black: #050505;
+      --obsidian: #0b0b0b;
+      --graphite: #161616;
+      --charcoal: #1f1f1f;
+      --silver: #d9d9d9;
+      --white: #f6f3ee;
+      --muted: rgba(217, 217, 217, 0.72);
+      --line: rgba(217, 217, 217, 0.15);
+      --gold: #c6a15b;
+      --violet: #6e4eff;
+      --container: min(1440px, calc(100vw - 40px));
+      --inner: min(1160px, calc(100vw - 40px));
+      --s-1: 0.5rem;
+      --s-2: 0.75rem;
+      --s-3: 1rem;
+      --s-4: 1.5rem;
+      --s-5: 2rem;
+      --s-6: 3rem;
+      --s-7: 4.5rem;
+      --s-8: 6rem;
+      --s-9: 8rem;
+      --r: 8px;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --fast: 220ms var(--ease);
+      --slow: 860ms var(--ease);
+      --shadow: 0 34px 110px rgba(0, 0, 0, 0.54);
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--black); }
     body {
       margin: 0;
       min-height: 100vh;
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--body);
       overflow-x: hidden;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 72% 8%, rgba(110, 78, 255, 0.12), transparent 30rem),
+        linear-gradient(180deg, #050505 0%, #0b0b0b 45%, #050505 100%);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      text-rendering: optimizeLegibility;
     }
 
-    /* Ambient Data Rain Canvas */
-    #matrix-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      opacity: 0.35;
-      pointer-events: none;
+    img, picture { display: block; }
+    img { max-width: 100%; height: auto; }
+    a, button { font: inherit; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
     }
 
-    .scanlines {
+    .logo-intro,
+    .grain,
+    .vignette {
       position: fixed;
       inset: 0;
-      z-index: 2;
       pointer-events: none;
+    }
+
+    .logo-intro {
+      z-index: 60;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
       background:
-        radial-gradient(circle at center, transparent 55%, rgba(0, 0, 0, 0.5) 100%),
-        repeating-linear-gradient(
-          180deg,
-          rgba(0, 255, 255, 0.02) 0,
-          rgba(0, 255, 255, 0.02) 1px,
-          transparent 1px,
-          transparent 4px
-        );
-      opacity: 0.8;
+        radial-gradient(circle at 50% 44%, rgba(110, 78, 255, 0.1), transparent 22rem),
+        linear-gradient(180deg, #000, #050505);
+      opacity: 0;
+      visibility: hidden;
     }
 
-    .page {
-      position: relative;
-      z-index: 3;
+    .intro-active .logo-intro {
+      visibility: visible;
+      animation: introFade 3.2s var(--ease) forwards;
     }
 
-    .shell {
-      width: min(calc(100% - 2rem), var(--max-width));
-      margin: 0 auto;
+    .logo-intro__depth,
+    .logo-intro__light {
+      position: absolute;
+      inset: -12%;
+    }
+
+    .logo-intro__depth {
+      background:
+        linear-gradient(100deg, transparent 0 35%, rgba(217, 217, 217, 0.05) 47%, transparent 62%),
+        repeating-linear-gradient(90deg, rgba(217, 217, 217, 0.035) 0 1px, transparent 1px 11vw);
+      opacity: 0;
+      transform: perspective(900px) rotateX(66deg) translateY(12%);
+      animation: introDepth 3.2s var(--ease) forwards;
+    }
+
+    .logo-intro__light {
+      width: 42%;
+      left: -48%;
+      background: linear-gradient(100deg, transparent, rgba(246, 243, 238, 0.16), rgba(198, 161, 91, 0.12), transparent);
+      filter: blur(18px);
+      transform: skewX(-16deg);
+      animation: introLight 3.2s var(--ease) forwards;
+    }
+
+    .logo-intro img {
+      width: clamp(132px, 18vw, 240px);
+      opacity: 0;
+      transform: translate3d(0, 18px, 0) scale(0.88);
+      filter: drop-shadow(0 26px 52px rgba(0, 0, 0, 0.68));
+      animation: introLogo 3.2s var(--ease) forwards;
+    }
+
+    .grain {
+      z-index: 20;
+      opacity: 0.11;
+      mix-blend-mode: soft-light;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.36'/%3E%3C/svg%3E");
+    }
+
+    .vignette {
+      z-index: 20;
+      background:
+        linear-gradient(180deg, rgba(5, 5, 5, 0.34), transparent 16%, transparent 76%, rgba(5, 5, 5, 0.64)),
+        radial-gradient(circle at center, transparent 20%, rgba(5, 5, 5, 0.3) 100%);
     }
 
     .topbar {
-      padding: 1.4rem 0 0;
-    }
-
-    .nav {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      z-index: 30;
+      width: var(--container);
+      transform: translateX(-50%);
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem 1.1rem;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: var(--panel);
-      box-shadow:
-        inset 0 0 0 1px rgba(0, 255, 255, 0.1),
-        0 0 28px rgba(0, 255, 255, 0.15);
-      backdrop-filter: blur(12px);
+      gap: var(--s-4);
+      padding: var(--s-3) 0;
+      transition: padding var(--fast), background var(--fast), border-color var(--fast);
     }
 
-    .brand, .nav-status {
-      font-family: var(--display);
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-size: 0.82rem;
+    .topbar.is-scrolled {
+      padding: var(--s-2) 0;
+      background: linear-gradient(180deg, rgba(5, 5, 5, 0.88), rgba(5, 5, 5, 0.46));
+      border-bottom: 1px solid rgba(217, 217, 217, 0.08);
+      backdrop-filter: blur(18px);
     }
 
-    .brand {
-      color: var(--accent);
-      text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
-    }
-
-    .nav-status {
-      color: var(--muted);
-    }
-
-    .nav-status::after {
-      content: "";
-      display: inline-block;
-      width: 0.5rem;
-      height: 0.5rem;
-      margin-left: 0.75rem;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 12px var(--accent);
-      animation: pulse 1.8s ease-in-out infinite;
-    }
-
-    main {
-      padding: 1.8rem 0 2.5rem;
-    }
-
-    .hero, .manifesto, .culture, .drop, footer {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--panel);
-      box-shadow:
-        inset 0 0 0 1px rgba(0, 255, 255, 0.05),
-        0 0 32px rgba(0, 255, 255, 0.08);
-      backdrop-filter: blur(16px);
-      margin-bottom: 1rem;
-    }
-
-    .hero {
-      min-height: calc(100vh - 7rem);
+    .brand-mark {
+      width: 64px;
+      aspect-ratio: 1;
       display: grid;
-      align-items: center;
-      padding: clamp(2.5rem, 8vw, 5rem) clamp(1.4rem, 4vw, 2.6rem);
+      place-items: center;
     }
 
-    .hero-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
-      gap: 1.5rem;
-      align-items: end;
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.52));
     }
 
-    .eyebrow, .section-kicker, .drop-meta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.7rem;
-      width: fit-content;
-      padding: 0.6rem 0.95rem;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(0, 255, 255, 0.05);
-      color: var(--accent);
-      font-family: var(--display);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      text-shadow: 0 0 8px var(--accent);
-      box-shadow: 0 0 18px rgba(0, 255, 255, 0.1);
-    }
-
-    .eyebrow::before, .section-kicker::before, .drop-meta::before {
-      content: "";
-      width: 0.5rem;
-      height: 0.5rem;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 12px var(--accent);
-    }
-
-    .hero-copy {
-      display: grid;
-      gap: 1.05rem;
-      max-width: 42rem;
-    }
-
-    .hero-title, .section-title, .drop-title {
-      margin: 0;
-      font-family: var(--display);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--text);
-      text-shadow: 0 0 15px rgba(0, 255, 255, 0.4), 0 0 30px rgba(0, 255, 255, 0.2);
-    }
-
-    .hero-title {
-      font-size: clamp(3rem, 8vw, 5.5rem);
-      min-height: 2.2em; /* Prevents layout jump */
-    }
-
-    .cursor-blink {
-      animation: blink 1s step-end infinite;
-      color: var(--accent);
-      text-shadow: 0 0 10px var(--accent);
-    }
-
-    @keyframes blink { 50% { opacity: 0; } }
-
-    .hero-subtag {
-      margin: 0;
-      color: var(--accent);
-      font-family: var(--display);
-      font-size: clamp(1rem, 2vw, 1.3rem);
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-shadow: 0 0 10px var(--accent);
-    }
-
-    .hero-body, .manifesto-intro, .drop-copy, .footer-copy, .tribe-copy {
-      margin: 0;
-      color: var(--muted);
-      font-family: var(--body);
-      font-size: 1.1rem;
-      font-weight: 500;
-      line-height: 1.7;
-      max-width: 40rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-      margin-top: 0.5rem;
-    }
-
-    .cta-primary, .cta-secondary {
-      position: relative;
+    .nav-cta,
+    .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 13.5rem;
-      padding: 1rem 1.35rem;
-      border-radius: 8px; /* Sharper edges for tech vibe */
-      font-family: var(--display);
-      font-size: 0.92rem;
+      min-height: 48px;
+      border-radius: var(--r);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: transform var(--fast), border-color var(--fast), background var(--fast), color var(--fast);
+    }
+
+    .nav-cta {
+      padding: 0 var(--s-4);
+      border: 1px solid rgba(246, 243, 238, 0.28);
+      background: rgba(5, 5, 5, 0.38);
+    }
+
+    .nav-cta:hover,
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold);
+    }
+
+    .section {
+      position: relative;
+      width: var(--container);
+      margin: 0 auto;
+      transform: translateZ(0);
+    }
+
+    .hero {
+      width: 100%;
+      min-height: 100svh;
+      display: grid;
+      align-items: end;
+      isolation: isolate;
+      overflow: hidden;
+      background: var(--black);
+    }
+
+    .hero__media,
+    .hero__shade {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero__media {
+      z-index: -3;
+    }
+
+    .hero__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 45%;
+      will-change: transform;
+    }
+
+    .hero__shade {
+      z-index: -2;
+      background:
+        radial-gradient(circle at 68% 28%, rgba(198, 161, 91, 0.12), transparent 18rem),
+        linear-gradient(90deg, rgba(5, 5, 5, 0.92) 0%, rgba(5, 5, 5, 0.54) 38%, rgba(5, 5, 5, 0.28) 100%),
+        linear-gradient(180deg, rgba(5, 5, 5, 0.18) 0%, rgba(5, 5, 5, 0.12) 48%, rgba(5, 5, 5, 0.94) 100%);
+    }
+
+    .hero__content {
+      width: var(--inner);
+      margin: 0 auto;
+      padding: 9rem 0 7rem;
+    }
+
+    .hero__logo {
+      width: clamp(84px, 12vw, 138px);
+      margin-bottom: var(--s-4);
+      filter: drop-shadow(0 22px 44px rgba(0, 0, 0, 0.58));
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: "Manrope", "Inter", sans-serif;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 980px;
+      font-size: clamp(4.5rem, 12vw, 10rem);
+      line-height: 0.86;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-size: clamp(3rem, 7vw, 7.5rem);
+      line-height: 0.92;
+    }
+
+    h3 {
+      font-size: clamp(1.25rem, 2.2vw, 2rem);
+      line-height: 1.1;
+    }
+
+    p { margin: 0; }
+
+    .lede,
+    .section p,
+    .card p,
+    .cta-copy p {
+      color: var(--muted);
+      font-size: clamp(1.03rem, 1.55vw, 1.22rem);
+      line-height: 1.75;
+    }
+
+    .lede {
+      max-width: 650px;
+      margin-top: var(--s-4);
+      color: rgba(246, 243, 238, 0.8);
+      font-size: clamp(1.08rem, 2vw, 1.38rem);
+      line-height: 1.55;
+    }
+
+    .hero__actions,
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s-3);
+      margin-top: var(--s-5);
+    }
+
+    .button {
+      padding: 0 var(--s-5);
+      border: 1px solid transparent;
+    }
+
+    .button--primary {
+      color: #080808;
+      background: var(--white);
+      box-shadow: 0 18px 46px rgba(0, 0, 0, 0.34);
+    }
+
+    .button--primary:hover {
+      background: var(--gold);
+    }
+
+    .button--quiet {
+      color: var(--white);
+      background: rgba(5, 5, 5, 0.22);
+      border-color: rgba(246, 243, 238, 0.24);
+    }
+
+    .philosophy {
+      min-height: 90svh;
+      display: grid;
+      grid-template-columns: minmax(0, 0.78fr) minmax(0, 1fr);
+      gap: var(--s-7);
+      align-items: center;
+      padding: var(--s-9) 0;
+    }
+
+    .philosophy__words {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      border: 1px solid var(--line);
+      background: rgba(217, 217, 217, 0.12);
+    }
+
+    .philosophy__words span,
+    .glimpse__label {
+      min-height: 96px;
+      display: grid;
+      place-items: center;
+      padding: var(--s-4);
+      background: rgba(11, 11, 11, 0.92);
+      color: rgba(246, 243, 238, 0.8);
+      font-size: 0.78rem;
       font-weight: 700;
       letter-spacing: 0.14em;
+      text-align: center;
       text-transform: uppercase;
-      transition: all 200ms ease;
-      cursor: pointer;
     }
 
-    .cta-primary {
-      border: 1px solid var(--accent);
-      background: rgba(0, 255, 255, 0.1);
-      box-shadow: 0 0 15px var(--accent-soft), inset 0 0 10px var(--accent-soft);
-      color: var(--accent);
-      text-shadow: 0 0 8px var(--accent);
+    .why {
+      padding: var(--s-8) 0 var(--s-9);
     }
 
-    .cta-primary:hover {
-      background: var(--accent);
-      color: var(--bg);
-      box-shadow: 0 0 25px var(--accent), inset 0 0 15px var(--accent);
-      text-shadow: none;
+    .why__header {
+      max-width: 900px;
+      margin-bottom: var(--s-6);
     }
 
-    .hero-support {
-      margin: 0.25rem 0 0;
-      color: var(--accent);
-      font-family: var(--display);
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-    }
-
-    .hero-side {
-      justify-self: end;
-      width: min(100%, 390px);
-      padding: 1.2rem;
+    .why__grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
       border: 1px solid var(--line);
-      border-radius: 20px;
-      background: var(--panel-strong);
-      box-shadow: inset 0 0 0 1px rgba(0, 255, 255, 0.1), 0 0 30px rgba(0, 255, 255, 0.05);
+      background: rgba(217, 217, 217, 0.12);
     }
 
-    .hero-side-visual {
-      height: 15rem;
-      border-radius: 18px;
+    .card {
+      min-height: 260px;
+      display: grid;
+      align-content: end;
+      gap: var(--s-3);
+      padding: var(--s-5);
+      background:
+        linear-gradient(145deg, rgba(198, 161, 91, 0.055), transparent 36%),
+        rgba(11, 11, 11, 0.94);
+      transition: transform var(--fast), background var(--fast);
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      background:
+        linear-gradient(145deg, rgba(198, 161, 91, 0.11), transparent 42%),
+        rgba(22, 22, 22, 0.98);
+    }
+
+    .signature {
+      min-height: 125svh;
+      width: 100%;
+      display: grid;
+      align-items: center;
+      padding: var(--s-8) 0;
+      overflow: hidden;
+      isolation: isolate;
+      --wolf-progress: 0;
+      --wolf-opacity: 0;
+      --wolf-scale: 0.92;
+      --wolf-y: 44px;
+    }
+
+    .signature__image {
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+    }
+
+    .signature__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      will-change: transform;
+    }
+
+    .signature::before,
+    .signature::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .signature::before {
+      z-index: -1;
+      opacity: calc(0.16 + (var(--wolf-progress) * 0.42));
+      background:
+        radial-gradient(circle at 50% 42%, rgba(110, 78, 255, 0.34), transparent 25rem),
+        linear-gradient(105deg, transparent 24%, rgba(246, 243, 238, 0.08), transparent 58%);
+      transform: translate3d(calc((var(--wolf-progress) - 0.5) * 7vw), 0, 0);
+    }
+
+    .signature::after {
+      z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(5, 5, 5, 0.92) 0%, rgba(5, 5, 5, 0.52) 44%, rgba(5, 5, 5, 0.26) 100%),
+        linear-gradient(180deg, rgba(5, 5, 5, 0.78), rgba(5, 5, 5, 0.18) 42%, rgba(5, 5, 5, 0.9));
+    }
+
+    .signature__mark {
+      position: absolute;
+      left: 50%;
+      top: 72%;
+      z-index: 0;
+      display: grid;
+      justify-items: center;
+      width: min(92vw, 1120px);
+      opacity: var(--wolf-opacity);
+      transform: translate3d(-50%, var(--wolf-y), 0) scale(var(--wolf-scale));
+      will-change: transform, opacity;
+    }
+
+    .signature__mark span {
+      color: rgba(246, 243, 238, 0.28);
+      font-family: "Manrope", "Inter", sans-serif;
+      font-size: clamp(4rem, 13vw, 10.5rem);
+      font-weight: 800;
+      line-height: 0.82;
+      text-transform: uppercase;
+      text-shadow: 0 32px 88px rgba(0, 0, 0, 0.72);
+    }
+
+    .signature__copy {
+      position: relative;
+      z-index: 2;
+      width: var(--inner);
+      margin: 0 auto;
+      max-width: 790px;
+      justify-self: start;
+      transform: translate3d(calc(var(--wolf-progress) * -18px), 0, 0);
+    }
+
+    .grid-section {
+      display: grid;
+      grid-template-columns: minmax(0, 0.78fr) minmax(0, 1fr);
+      gap: var(--s-6);
+      align-items: end;
+      padding: var(--s-9) 0 var(--s-8);
+    }
+
+    .grid-section__image {
+      aspect-ratio: 1.58;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--obsidian);
+      box-shadow: var(--shadow);
+    }
+
+    .grid-section__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 900ms var(--ease);
+    }
+
+    .grid-section__image:hover img {
+      transform: scale(1.018);
+    }
+
+    .glimpse {
+      padding: var(--s-8) 0 var(--s-9);
+    }
+
+    .glimpse__header {
+      max-width: 900px;
+      margin-bottom: var(--s-6);
+    }
+
+    .glimpse__gallery {
+      display: grid;
+      grid-template-columns: 0.78fr 1fr 0.78fr;
+      gap: var(--s-4);
+      align-items: center;
+    }
+
+    .glimpse__item {
+      position: relative;
+      min-height: 420px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--obsidian);
+      box-shadow: var(--shadow);
+    }
+
+    .glimpse__item:nth-child(2) {
+      min-height: 560px;
+    }
+
+    .glimpse__item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 900ms var(--ease), filter 900ms var(--ease);
+    }
+
+    .glimpse__item:hover img {
+      transform: scale(1.018);
+      filter: contrast(1.04);
+    }
+
+    .glimpse__label {
+      position: absolute;
+      left: var(--s-4);
+      right: var(--s-4);
+      bottom: var(--s-4);
+      min-height: 54px;
+      border-top: 1px solid rgba(246, 243, 238, 0.18);
+      background: transparent;
+      place-items: end start;
+      padding: var(--s-3) 0 0;
+    }
+
+    .transition {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+      gap: var(--s-6);
+      align-items: center;
+      padding: var(--s-8) 0 var(--s-9);
+      border-top: 1px solid rgba(217, 217, 217, 0.12);
+    }
+
+    .transition__panel {
       border: 1px solid var(--line);
       background:
-        radial-gradient(circle at 50% 25%, rgba(0, 255, 255, 0.1), transparent 30%),
-        linear-gradient(180deg, rgba(0, 15, 25, 0.2), rgba(0, 15, 25, 0.9));
-      box-shadow: inset 0 -50px 80px rgba(0, 0, 0, 0.8);
+        linear-gradient(135deg, rgba(198, 161, 91, 0.08), transparent 34%),
+        rgba(11, 11, 11, 0.94);
+      padding: var(--s-5);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
     }
 
-    .hero-side-copy {
-      margin-top: 1rem;
-      display: grid;
-      gap: 0.55rem;
-    }
-
-    .hero-side-label {
-      color: var(--accent);
-      font-family: var(--display);
-      font-size: 0.76rem;
+    .footer {
+      width: var(--container);
+      margin: 0 auto;
+      padding: var(--s-5) 0 var(--s-6);
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: var(--s-4);
+      border-top: 1px solid rgba(217, 217, 217, 0.12);
+      color: rgba(217, 217, 217, 0.58);
+      font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.16em;
       text-transform: uppercase;
     }
 
-    .hero-side-text {
-      margin: 0;
-      color: var(--text);
-      font-family: var(--body);
-      font-size: 1.25rem;
-      line-height: 1.35;
-    }
-
-    .manifesto, .culture, .drop, footer {
-      padding: clamp(1.4rem, 4vw, 2.4rem);
-    }
-
-    .section-header {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 0.95rem;
-      margin-bottom: 2rem;
-    }
-
-    .section-title {
-      font-size: clamp(2rem, 6vw, 3.5rem);
-    }
-
-    .manifesto-lines {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 1rem;
-    }
-
-    .manifesto-line {
-      margin: 0;
-      max-width: 50rem;
-      color: var(--text);
-      font-family: var(--body);
-      font-size: clamp(1.2rem, 3vw, 1.8rem);
-      font-weight: 500;
-      line-height: 1.4;
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 640ms ease, transform 640ms ease;
-      transition-delay: calc(var(--line-index) * 150ms);
-    }
-
-    .manifesto-line span {
-      color: var(--accent);
-      text-shadow: 0 0 12px var(--accent-soft);
-      font-family: var(--display);
-      font-weight: 700;
-    }
-
-    .manifesto.is-visible .manifesto-line, .is-visible .manifesto-line {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .culture-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-
-    .tribe-card {
-      padding: 1.5rem;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: var(--panel-strong);
-      transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
-    }
-
-    .tribe-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--accent);
-      box-shadow: 0 0 20px var(--accent-soft), inset 0 0 10px var(--accent-soft);
-    }
-
-    .tribe-index {
-      color: var(--accent);
-      font-family: var(--display);
-      font-size: 0.9rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-    }
-
-    .tribe-title {
-      margin: 1rem 0 0.5rem;
-      color: var(--text);
-      font-family: var(--display);
-      font-size: 1.2rem;
-      text-transform: uppercase;
-      text-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
-    }
-
-    .drop-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.8fr);
-      gap: 2rem;
-      align-items: center;
-    }
-
-    .countdown {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 0.8rem;
-      margin-top: 1rem;
-    }
-
-    .count-unit {
-      padding: 1rem 0.5rem;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel-strong);
-      box-shadow: 0 0 15px var(--accent-soft);
-      text-align: center;
-    }
-
-    .count-value {
-      display: block;
-      color: var(--accent);
-      font-family: var(--display);
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700;
-      line-height: 1;
-      text-shadow: 0 0 15px var(--accent);
-    }
-
-    .count-label {
-      display: block;
-      margin-top: 0.5rem;
-      color: var(--muted);
-      font-family: var(--display);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+    .footer img {
+      width: 72px;
+      aspect-ratio: 1;
+      object-fit: contain;
     }
 
     .reveal {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 800ms ease, transform 800ms ease;
+      transform: translate3d(0, 32px, 0);
+      transition: opacity var(--slow), transform var(--slow);
+      will-change: opacity, transform;
     }
 
     .reveal.is-visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translate3d(0, 0, 0);
     }
 
-    .footer-copy {
-      max-width: none;
-      color: var(--accent);
-      font-family: var(--display);
-      font-size: 0.9rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-align: center;
-      text-shadow: 0 0 10px var(--accent-soft);
+    .magnetic { will-change: transform; }
+
+    @keyframes introFade {
+      0% { opacity: 1; }
+      78% { opacity: 1; }
+      100% { opacity: 0; visibility: hidden; }
     }
 
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 8px var(--accent); opacity: 0.8; }
-      50% { box-shadow: 0 0 16px var(--accent); opacity: 1; }
+    @keyframes introLogo {
+      0% { opacity: 0; transform: translate3d(0, 20px, 0) scale(0.86); }
+      34% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+      72% { opacity: 1; transform: translate3d(0, -4px, 0) scale(1.08); }
+      100% { opacity: 0; transform: translate3d(0, -10px, 0) scale(1.18); }
     }
 
-    @media (max-width: 980px) {
-      .hero-grid, .drop-grid { grid-template-columns: 1fr; }
-      .hero-side { width: 100%; }
+    @keyframes introLight {
+      0% { transform: translate3d(0, 0, 0) skewX(-16deg); opacity: 0; }
+      22% { opacity: 0.82; }
+      68% { opacity: 0.68; }
+      100% { transform: translate3d(330%, 0, 0) skewX(-16deg); opacity: 0; }
     }
-    @media (max-width: 680px) {
-      .nav { flex-direction: column; align-items: flex-start; border-radius: 12px; }
-      .countdown { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .hero-actions { flex-direction: column; }
+
+    @keyframes introDepth {
+      0% { opacity: 0; transform: perspective(900px) rotateX(66deg) translateY(18%); }
+      38% { opacity: 0.82; }
+      100% { opacity: 0; transform: perspective(900px) rotateX(66deg) translateY(-4%); }
+    }
+
+    @media (max-width: 1080px) {
+      .philosophy,
+      .grid-section,
+      .transition {
+        grid-template-columns: 1fr;
+      }
+
+      .why__grid,
+      .glimpse__gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .hero__content {
+        padding-bottom: 6rem;
+      }
+
+      .glimpse__item,
+      .glimpse__item:nth-child(2) {
+        min-height: auto;
+        aspect-ratio: 4 / 5;
+      }
+    }
+
+    @media (max-width: 760px) {
+      :root {
+        --container: min(100vw - 24px, 1440px);
+        --inner: min(100vw - 24px, 1160px);
+      }
+
+      .topbar { width: calc(100vw - 24px); }
+      .brand-mark { width: 54px; }
+      .nav-cta {
+        min-height: 44px;
+        padding: 0 var(--s-3);
+        font-size: 0.66rem;
+      }
+
+      .hero__media img {
+        object-fit: contain;
+        object-position: 50% 72px;
+        opacity: 0.82;
+      }
+
+      .hero__shade {
+        background:
+          linear-gradient(180deg, rgba(5, 5, 5, 0.18) 0%, rgba(5, 5, 5, 0.58) 42%, rgba(5, 5, 5, 0.96) 100%),
+          linear-gradient(90deg, rgba(5, 5, 5, 0.74), rgba(5, 5, 5, 0.18));
+      }
+
+      .hero__content { padding: 7.5rem 0 5rem; }
+      h1 { font-size: clamp(3.05rem, 15.5vw, 5.4rem); }
+      h2 { font-size: clamp(2.3rem, 11.5vw, 4.4rem); }
+      .hero__actions, .cta-actions, .button { width: 100%; }
+      .philosophy,
+      .why,
+      .signature,
+      .grid-section,
+      .glimpse,
+      .transition {
+        padding: var(--s-7) 0;
+      }
+
+      .philosophy__words { grid-template-columns: 1fr; }
+      .signature { min-height: 112svh; }
+      .signature__mark { top: 72%; }
+      .signature__copy {
+        align-self: end;
+        padding-bottom: var(--s-7);
+      }
+
+      .footer { align-items: start; }
+    }
+
+    @media (max-width: 360px) {
+      .nav-cta {
+        padding: 0 var(--s-2);
+        letter-spacing: 0.12em;
+      }
+      .brand-mark { width: 48px; }
+      .button { padding: 0 var(--s-3); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+      .logo-intro { display: none; }
     }
   </style>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "The Vibe Canvas",
+      "url": "https://www.thevibecanvas.in/",
+      "logo": "https://www.thevibecanvas.in/assets/the-vibe-canvas-logo.png",
+      "sameAs": [
+        "https://www.instagram.com/thevibecanvas.in",
+        "https://www.facebook.com/profile.php?id=61587367756185",
+        "https://www.threads.com/@thevibecanvas.in"
+      ]
+    }
+  </script>
 </head>
 <body>
-  
-  <canvas id="matrix-canvas"></canvas>
-  <div class="scanlines" aria-hidden="true"></div>
-
-  <div class="page">
-    <header class="topbar shell">
-      <nav class="nav" aria-label="Top navigation">
-        <div class="brand">THE VIBE CANVAS</div>
-        <div class="nav-status">>_ STATUS: SYSTEM BOOTING</div>
-      </nav>
-    </header>
-
-    <main class="shell">
-      <section class="hero">
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <p class="eyebrow reveal">Hardware Drop v1.0</p>
-            
-            <h1 class="hero-title reveal" id="type-target"></h1>
-            
-            <p class="hero-subtag reveal">Code &times; Culture</p>
-            <p class="hero-body reveal">Bridge the gap between code and culture. The mainframe is booting. A signal flare for the culture that never saw itself reflected in fashion.</p>
-            <div class="hero-actions reveal">
-              <a class="cta-primary" href="https://waitlist.thevibecanvas.in/">[ INITIALIZE_AVATAR ]</a>
-            </div>
-            <p class="hero-support reveal">Initialize to secure 5,000 Creds + Decryption Key</p>
-          </div>
-
-          <aside class="hero-side reveal" aria-label="Campaign preview">
-            <div class="hero-side-visual"></div>
-            <div class="hero-side-copy">
-              <span class="hero-side-label">System Architecture</span>
-              <p class="hero-side-text">Luxury streetwear energy engineered for builders, hackers, and the ones turning culture into code.</p>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="manifesto reveal" id="manifesto-section">
-        <div class="section-header">
-          <p class="section-kicker">Origin File</p>
-          <h2 class="section-title">DECRYPTING THE CULTURE</h2>
-        </div>
-        <div class="manifesto-lines">
-          <p class="manifesto-line" style="--line-index: 0;">For too long, the <span>architects of tomorrow</span> have been invisible.</p>
-          <p class="manifesto-line" style="--line-index: 1;">The techies, the ethical hackers, the late-night coders.</p>
-          <p class="manifesto-line" style="--line-index: 2;">You are rewriting reality, yet the fashion world missed you.</p>
-          <p class="manifesto-line" style="--line-index: 3;">We are fixing the glitch. <span>The Vibe Canvas</span> is your uniform.</p>
-          <p class="manifesto-line" style="--line-index: 4;">A designated dress code for the modern future.</p>
-        </div>
-      </section>
-
-      <section class="culture reveal">
-        <div class="section-header">
-          <p class="section-kicker">The Syndicate</p>
-          <h2 class="section-title">CHOOSE YOUR CLASS</h2>
-        </div>
-        <div class="culture-grid">
-          <article class="tribe-card">
-            <span class="tribe-index">01</span>
-            <h3 class="tribe-title">Developers</h3>
-            <p class="tribe-copy">Writing the systems that quietly run the world.</p>
-          </article>
-          <article class="tribe-card">
-            <span class="tribe-index">02</span>
-            <h3 class="tribe-title">Netrunners</h3>
-            <p class="tribe-copy">Understanding the architecture by knowing where it breaks.</p>
-          </article>
-          <article class="tribe-card">
-            <span class="tribe-index">03</span>
-            <h3 class="tribe-title">Architects</h3>
-            <p class="tribe-copy">Translating interfaces and digital identity into physical form.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="drop reveal">
-        <div class="drop-grid">
-          <div class="drop-stack">
-            <p class="drop-meta">Drop Protocol</p>
-            <h2 class="drop-title">HARDWARE 01</h2>
-            <p class="drop-copy">A first release engineered like a statement piece: sharp, cinematic, and made for the culture building the future in plain sight.</p>
-            <div class="hero-actions" style="margin-top: 1rem;">
-              <a class="cta-primary" href="https://waitlist.thevibecanvas.in/">[ SECURE_ACCESS ]</a>
-            </div>
-          </div>
-          <div>
-            <p class="drop-meta" style="margin-bottom: 0.5rem; background: transparent; border: none; box-shadow: none;">ESTIMATED BOOT TIME</p>
-            <div class="countdown" id="countdown-timer">
-              <div class="count-unit"><span id="days" class="count-value">00</span><span class="count-label">Days</span></div>
-              <div class="count-unit"><span id="hours" class="count-value">00</span><span class="count-label">Hours</span></div>
-              <div class="count-unit"><span id="minutes" class="count-value">00</span><span class="count-label">Minutes</span></div>
-              <div class="count-unit"><span id="seconds" class="count-value">00</span><span class="count-label">Seconds</span></div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="shell">
-      <p class="footer-copy">>_ SYSTEM LOG: AWAITING USER INITIALIZATION...</p>
-    </footer>
+  <div class="logo-intro" aria-hidden="true">
+    <div class="logo-intro__depth"></div>
+    <div class="logo-intro__light"></div>
+    <img src="assets/the-vibe-canvas-logo.png" alt="" width="1280" height="1280">
   </div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand-mark" href="#top" aria-label="The Vibe Canvas home">
+      <img src="assets/the-vibe-canvas-logo.png" alt="The Vibe Canvas" width="1280" height="1280">
+    </a>
+    <a class="nav-cta magnetic" href="https://waitlist.thevibecanvas.in/">Join Waitlist</a>
+  </header>
+
+  <main id="top">
+    <section class="section hero" aria-labelledby="hero-title">
+      <picture class="hero__media">
+        <img src="assets/hero-campaign.webp" alt="The Vibe Canvas campaign artwork in an architectural hall" width="1671" height="941" decoding="async" fetchpriority="high">
+      </picture>
+      <div class="hero__shade" aria-hidden="true"></div>
+      <div class="hero__content reveal">
+        <img class="hero__logo" src="assets/the-vibe-canvas-logo.png" alt="The Vibe Canvas" width="1280" height="1280">
+        <h1 id="hero-title">The Vibe Canvas</h1>
+        <p class="lede">A premium fashion brand shaped by identity, culture, originality, craftsmanship, community, discipline, evolution, and belonging.</p>
+        <div class="hero__actions">
+          <a class="button button--primary magnetic" href="https://waitlist.thevibecanvas.in/">Join The Waitlist</a>
+          <button class="button button--quiet magnetic" type="button" data-scroll="#philosophy">Enter The Brand</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section philosophy" id="philosophy" aria-labelledby="philosophy-title">
+      <div class="reveal">
+        <h2 id="philosophy-title">Identity before everything.</h2>
+        <p class="lede">The Vibe Canvas exists for the feeling before the product: instinct, discipline, originality, and the quiet recognition that you belong inside the culture being shaped next.</p>
+      </div>
+      <div class="philosophy__words reveal" aria-label="Brand philosophy">
+        <span>Instinct</span>
+        <span>Identity</span>
+        <span>Discipline</span>
+        <span>Originality</span>
+        <span>Belonging</span>
+        <span>Evolution</span>
+      </div>
+    </section>
+
+    <section class="section why" aria-labelledby="why-title">
+      <div class="why__header reveal">
+        <h2 id="why-title">Why The Vibe Canvas.</h2>
+        <p class="lede">Fashion should carry meaning. Every release begins with an original concept, moves through disciplined construction, and becomes part of a larger cultural ecosystem.</p>
+      </div>
+      <div class="why__grid">
+        <article class="card reveal">
+          <h3>Original concepts</h3>
+          <p>No recycled language. No borrowed identity. Each collection begins with its own narrative.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Premium quality</h3>
+          <p>Material, fit, and finish are treated as the foundation of trust.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Limited releases</h3>
+          <p>Small-batch drops keep the work intentional, focused, and worth remembering.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section signature" id="signature" aria-labelledby="signature-title">
+      <picture class="signature__image">
+        <img src="assets/identity-wolf.webp" alt="Wolf identity artwork for The Vibe Canvas" width="1536" height="1024" loading="lazy" decoding="async">
+      </picture>
+      <div class="signature__mark" aria-hidden="true">
+        <span>Instinct</span>
+      </div>
+      <div class="signature__copy reveal">
+        <h2 id="signature-title">Instinct becomes a mark.</h2>
+        <p class="lede">The Wolf is not decoration. It is the identity signal: focused, original, disciplined, and moving with purpose.</p>
+      </div>
+    </section>
+
+    <section class="section grid-section" aria-labelledby="grid-title">
+      <div class="reveal">
+        <h2 id="grid-title">The Grid is the culture ecosystem.</h2>
+        <p class="lede">The Grid is the cultural layer of the brand: community ecosystem, creator network, member experience, and future platform behind The Vibe Canvas.</p>
+      </div>
+      <figure class="grid-section__image reveal">
+        <img src="assets/grid-ecosystem.webp" alt="The Grid ecosystem artwork with architectural depth" width="1536" height="1024" loading="lazy" decoding="async">
+      </figure>
+    </section>
+
+    <section class="section glimpse" aria-labelledby="glimpse-title">
+      <div class="glimpse__header reveal">
+        <h2 id="glimpse-title">A glimpse of what's coming.</h2>
+        <p class="lede">The first visual language is already forming: material, architecture, community, and identity. Enough to feel the direction. Not enough to reveal the whole world.</p>
+      </div>
+      <div class="glimpse__gallery">
+        <figure class="glimpse__item reveal">
+          <img src="assets/craft-materials.webp" alt="Material engineering artwork for The Vibe Canvas apparel" width="1199" height="1312" loading="lazy" decoding="async">
+          <figcaption class="glimpse__label">Craft</figcaption>
+        </figure>
+        <figure class="glimpse__item reveal">
+          <img src="assets/grid-city.webp" alt="Architectural Grid city artwork for The Vibe Canvas" width="1536" height="1024" loading="lazy" decoding="async">
+          <figcaption class="glimpse__label">Culture</figcaption>
+        </figure>
+        <figure class="glimpse__item reveal">
+          <img src="assets/access-campaign.webp" alt="The Vibe Canvas apparel campaign artwork" width="1607" height="979" loading="lazy" decoding="async">
+          <figcaption class="glimpse__label">Evolution</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section transition" aria-labelledby="transition-title">
+      <div class="cta-copy reveal">
+        <h2 id="transition-title">Continue into the ecosystem.</h2>
+        <p>The welcome experience begins the story. The waitlist is the next step into early access, community, launch updates, and the first release.</p>
+      </div>
+      <div class="transition__panel reveal">
+        <h3>Join the waitlist.</h3>
+        <p>Move from discovery into access with one clear step.</p>
+        <div class="cta-actions">
+          <a class="button button--primary magnetic" href="https://waitlist.thevibecanvas.in/">Join The Waitlist</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <img src="assets/the-vibe-canvas-logo.png" alt="The Vibe Canvas" width="1280" height="1280">
+    <span>The Vibe Canvas</span>
+  </footer>
 
   <script>
-    // 1. Bulletproof Typewriter Logic
-    document.addEventListener("DOMContentLoaded", () => {
-      const target = document.getElementById("type-target");
-      const text = "EQUIP YOUR AVATAR.";
-      let i = 0;
+    const revealItems = document.querySelectorAll(".reveal");
+    const heroImage = document.querySelector(".hero__media img");
+    const signature = document.querySelector(".signature");
+    const signatureImage = document.querySelector(".signature__image img");
+    const magnets = document.querySelectorAll(".magnetic");
+    const scrollButtons = document.querySelectorAll("[data-scroll]");
+    const topbar = document.querySelector(".topbar");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersFinePointer = window.matchMedia("(pointer: fine)").matches;
+    let ticking = false;
 
-      function type() {
-        if (i < text.length) {
-          target.innerHTML = text.substring(0, i + 1) + '<span class="cursor-blink">_</span>';
-          i++;
-          setTimeout(type, 80); // Speed of typing
-        }
-      }
-      setTimeout(type, 500); // Initial delay
-    });
-
-    // 2. Slowed Ambient Matrix Rain
-    const canvas = document.getElementById('matrix-canvas');
-    const ctx = canvas.getContext('2d');
-    
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    if (document.documentElement.classList.contains("intro-active")) {
+      window.setTimeout(() => {
+        document.documentElement.classList.remove("intro-active");
+      }, 3400);
     }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-    
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*<>[]{}/\\'.split('');
-    const fontSize = 16;
-    const columns = canvas.width / fontSize;
-    const drops = [];
-    
-    for(let x = 0; x < columns; x++) { drops[x] = Math.random() * canvas.height; }
-    
-    function drawMatrix() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = 'rgba(0, 255, 255, 0.25)'; // Cyan text
-      ctx.font = fontSize + 'px "Space Mono"';
-      
-      for(let i = 0; i < drops.length; i++) {
-        const text = chars[Math.floor(Math.random() * chars.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        if(drops[i] * fontSize > canvas.height && Math.random() > 0.98) { drops[i] = 0; }
-        drops[i] += 0.4; // Slower falling speed
+
+    function initReveal() {
+      if (!("IntersectionObserver" in window)) {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+        return;
       }
-    }
-    setInterval(drawMatrix, 40);
 
-    // 3. Scroll Reveal & Countdown Logic (Preserved from original)
-    (function () {
-      var targetDate = new Date("2026-06-11T12:00:00+05:30").getTime();
-      var units = { d: document.getElementById("days"), h: document.getElementById("hours"), m: document.getElementById("minutes"), s: document.getElementById("seconds") };
-
-      function updateTimer() {
-        var now = new Date().getTime();
-        var diff = targetDate - now;
-        if (diff <= 0) return;
-        units.d.textContent = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
-        units.h.textContent = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-        units.m.textContent = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-        units.s.textContent = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
-      }
-      setInterval(updateTimer, 1000);
-      updateTimer();
-
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-visible");
             observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.15 });
+      }, {
+        threshold: 0.18,
+        rootMargin: "0px 0px -8% 0px"
+      });
 
-      document.querySelectorAll(".reveal").forEach(function(el) { observer.observe(el); });
-    })();
+      revealItems.forEach((item, index) => {
+        item.style.transitionDelay = `${Math.min(index * 36, 180)}ms`;
+        observer.observe(item);
+      });
+    }
+
+    function updateScrollState() {
+      if (topbar) {
+        topbar.classList.toggle("is-scrolled", window.scrollY > 16);
+      }
+
+      if (!prefersReducedMotion) {
+        const viewportHeight = Math.max(window.innerHeight, 1);
+        const scrollRatio = Math.min(window.scrollY / viewportHeight, 1);
+
+        if (heroImage) {
+          heroImage.style.transform = `translate3d(0, ${scrollRatio * 18}px, 0) scale(1.035)`;
+        }
+
+        if (signature) {
+          const rect = signature.getBoundingClientRect();
+          const rawProgress = (viewportHeight - rect.top) / (viewportHeight + rect.height);
+          const progress = Math.min(1, Math.max(0, rawProgress));
+          const signatureWindow = Math.sin(progress * Math.PI);
+          const signatureOpacity = Math.max(0, Math.min(1, (signatureWindow - 0.22) / 0.58));
+
+          signature.style.setProperty("--wolf-progress", progress.toFixed(3));
+          signature.style.setProperty("--wolf-opacity", signatureOpacity.toFixed(3));
+          signature.style.setProperty("--wolf-scale", (0.9 + signatureOpacity * 0.14).toFixed(3));
+          signature.style.setProperty("--wolf-y", `${(1 - signatureOpacity) * 52 - progress * 18}px`);
+
+          if (signatureImage) {
+            signatureImage.style.transform = `translate3d(0, ${(0.5 - progress) * 34}px, 0) scale(${1.04 + progress * 0.035})`;
+          }
+        }
+      }
+
+      ticking = false;
+    }
+
+    function requestScrollUpdate() {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollState);
+        ticking = true;
+      }
+    }
+
+    function bindMagneticButtons() {
+      if (prefersReducedMotion || !prefersFinePointer) {
+        return;
+      }
+
+      magnets.forEach((item) => {
+        item.addEventListener("pointermove", (event) => {
+          const rect = item.getBoundingClientRect();
+          const dx = event.clientX - (rect.left + rect.width / 2);
+          const dy = event.clientY - (rect.top + rect.height / 2);
+          item.style.transform = `translate(${dx * 0.035}px, ${dy * 0.035}px)`;
+        });
+
+        item.addEventListener("pointerleave", () => {
+          item.style.transform = "";
+        });
+      });
+    }
+
+    function bindScrollButtons() {
+      scrollButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const selector = button.getAttribute("data-scroll");
+          const target = selector ? document.querySelector(selector) : null;
+          if (target) {
+            target.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
+          }
+        });
+      });
+    }
+
+    initReveal();
+    bindMagneticButtons();
+    bindScrollButtons();
+    updateScrollState();
+
+    window.addEventListener("scroll", requestScrollUpdate, { passive: true });
+    window.addEventListener("resize", requestScrollUpdate);
   </script>
 </body>
 </html>

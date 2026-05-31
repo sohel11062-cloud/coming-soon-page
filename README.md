@@ -1,2 +1,3 @@
-# coming-soon-page
-Temporary coming soon page
+# The Vibe Canvas Welcome Experience
+
+Premium brand introduction page for The Vibe Canvas.
